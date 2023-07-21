@@ -10,11 +10,11 @@ namespace RegistrationClinik.Models
         public string? Adres { get; set; }
         public string? Analiz { get; set; }
         public string? LDoctor { get; set; }
-        public DateTime? RegistrationDate { get; set; }
-        public decimal? Avans { get; set; }
-        public decimal? Ostatok { get; set; }
-        public decimal? Oplacheno { get; set; }
-        public decimal? Oplata { get; set; }
-        public int IsShow { get; set; }
+        public DateTime? RegistrationDate { get; set; } = DateTime.UtcNow.Date;
+        public decimal? Avans { get; set; } = 0;
+        public decimal? Ostatok { get; set; } = 0;
+        public decimal? Oplacheno { get; set; } = 0;
+        public decimal? Oplata { get; set; } = 0;
+        public int IsShow { get; set; } = 0;
     }
 }

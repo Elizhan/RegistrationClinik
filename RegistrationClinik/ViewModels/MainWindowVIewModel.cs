@@ -2,10 +2,12 @@
 using RegistrationClinik.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Security.Cryptography.Xml;
 using System.Windows;
 using System.Windows.Input;
-using System.Xml.Linq;
 
 namespace RegistrationClinik.ViewModels
 {
@@ -16,27 +18,43 @@ namespace RegistrationClinik.ViewModels
         public MainWindowVIewModel()
         {
             Create = new LambdaCommand(CreateMethod, CanCloseApplicationExecate);
+            Archive = new LambdaCommand(ArchiveMethod, CanArchiveMethodExecute);
             GetAllData();
         }
 
+
         #region Props
 
-        private DBTable? item = new DBTable();
+        public ObservableCollection<DBTable>? dBTables = new ObservableCollection<DBTable>();
+        public ObservableCollection<DBTable>? DBTables
+        {
+            get
+            {
+                return dBTables;
+            }
+            set
+            {
+                Set(ref dBTables, value);
+            }
+        }
 
+        private DBTable? item = new DBTable();
         public DBTable? Item
         {
             get { return item; }
             set { Set(ref item, value); }
         }
 
-        /*private string? name = "";
-
-        public string? Name
+        private string? buttonName = "Сохранить";
+        public string? ButtonName
         {
-            get { return name; }
-            set { Set(ref name, value); }
+            get { return buttonName; }
+            set
+            {
+                Set(ref buttonName, value);
+            }
         }
-        private DateTime? birday;
+        /*private DateTime? birday;
 
         public DateTime? Birday
         {
@@ -103,14 +121,8 @@ namespace RegistrationClinik.ViewModels
         #endregion
 
         public ICommand Create { get; set; }
-        public ICommand CreateB { get; set; }
+        public ICommand Archive { get; set; }
 
-        public List<DBTable> _dBTables;
-        public List<DBTable> dBTables
-        {
-            get { return _dBTables; }
-            set { Set(ref _dBTables, value); }
-        }
 
         public void CreateMethod(object o)
         {
@@ -118,7 +130,7 @@ namespace RegistrationClinik.ViewModels
             {
                 if (!VisButton)
                 {
-                    var r = db.DBTables.FirstOrDefault(s=>s.Id == Item.Id);
+                    var r = db.DBTables.FirstOrDefault(s => s.Id == Item.Id);
                     r.Adres = Item.Adres;
                     r.Analiz = Item.Analiz;
                     r.Avans = Item.Avans;
@@ -129,19 +141,6 @@ namespace RegistrationClinik.ViewModels
                     r.Oplata = Item.Oplata;
                     r.Ostatok = Item.Ostatok;
                     r.RegistrationDate = Item.RegistrationDate;
-
-
-                    var r1 = db.DBTablesB.FirstOrDefault(s => s.Id == Item.Id);
-                    r1.Adres = Item.Adres;
-                    r1.Analiz = Item.Analiz;
-                    r1.Avans = Item.Avans;
-                    r1.Birday = Item.Birday;
-                    r1.LDoctor = Item.LDoctor;
-                    r1.Name = Item.Name;
-                    r1.Oplacheno = Item.Oplacheno;
-                    r1.Oplata = Item.Oplata;
-                    r1.Ostatok = Item.Ostatok;
-                    r1.RegistrationDate = Item.RegistrationDate;
                 }
                 else
                 {
@@ -156,27 +155,14 @@ namespace RegistrationClinik.ViewModels
                         Oplacheno = Item.Oplacheno,
                         Oplata = Item.Oplata,
                         Ostatok = Item.Ostatok,
-                        RegistrationDate = Item.RegistrationDate
-                    });
-                    db.DBTablesB.Add(new Models.DBTableB()
-                    {
-                        Adres = Item.Adres,
-                        Analiz = Item.Analiz,
-                        Avans = Item.Avans,
-                        Birday = Item.Birday,
-                        LDoctor = Item.LDoctor,
-                        Name = Item.Name,
-                        Oplacheno = Item.Oplacheno,
-                        Oplata = Item.Oplata,
-                        Ostatok = Item.Ostatok,
-                        RegistrationDate = Item.RegistrationDate
+                        RegistrationDate = Item.RegistrationDate,
+                        IsShow = 1,
                     });
 
                 }
                 db.SaveChanges();
                 GetAllData();
                 MessageBox.Show("Данные успешно сохранены");
-                Item = new DBTable();
             }
         }
 
@@ -184,11 +170,42 @@ namespace RegistrationClinik.ViewModels
         {
             return true;
         }
+        private bool CanArchiveMethodExecute(object arg)
+        {
+            ButtonName = VisButton ? "Изменить" : "Сохранить";
+            return VisButton;
+        }
 
+        private void ArchiveMethod(object obj)
+        {
+            using (ApplicationConnect db = new ApplicationConnect())
+            {
+
+                db.DBTables.Remove(db.DBTables.First(s => s.Id == Item.Id));
+
+                db.DBArchives.Add(new Models.DBArchive()
+                {
+                    Adres = Item.Adres,
+                    Analiz = Item.Analiz,
+                    Birday = Item.Birday,
+                    LDoctor = Item.LDoctor,
+                    Name = Item.Name,
+                    Oplata = Item.Oplata,
+                    RegistrationDate = Item.RegistrationDate,
+                    IsShow = 1,
+                });
+                db.SaveChanges();
+                Item = new DBTable();
+                DBTables = new ObservableCollection<DBTable>();
+                GetAllData();
+            }
+        }
         public void GetAllData()
         {
             using (ApplicationConnect db = new ApplicationConnect())
-                dBTables = new List<DBTable>(db.DBTables);
+            {
+                DBTables = new ObservableCollection<DBTable>(db.DBTables);
+            }
         }
     }
 }

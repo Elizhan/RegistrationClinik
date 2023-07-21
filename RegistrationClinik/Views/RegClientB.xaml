@@ -97,7 +97,7 @@
             <Button Grid.Column="1" Grid.Row="5" 
                 Content="Отмена" Margin="20" Click="Close"/>
             <Button Grid.Column="3" Grid.Row="5" x:Name="cancel"
-                Content="Изменить" Margin="20"/>
+                Content="Изменить" Margin="20" Command="{Binding CreateB}"/>
             <Button Grid.Column="4" Grid.Row="5" 
                 Content="Сохранить" Margin="20" Command="{Binding CreateB}" Click="Button_Click"/>
         </Grid>

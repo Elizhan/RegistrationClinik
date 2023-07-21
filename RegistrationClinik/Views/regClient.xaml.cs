@@ -15,9 +15,6 @@ namespace RegistrationClinik.Views
             InitializeComponent();
             model = _model;
             DataContext = model;
-
-            if (MainWindowVIewModel.VisButton == false)
-                cancel.IsEnabled = false;
         }
 
         private void Close(object sender, RoutedEventArgs e)

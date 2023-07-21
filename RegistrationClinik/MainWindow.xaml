@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RegistrationClinik"
         mc:Ignorable="d" KeyUp="Window_KeyUp"
+        xmlns:vm="clr-namespace:RegistrationClinik.ViewModels"
+        d:DataContext="{d:DesignInstance Type=vm:MainWindowVIewModel}"
         Title="MainWindow" Height="1080" Width="1920" WindowState="Maximized" WindowStyle="None">
     <Grid>
         <Grid.RowDefinitions>
@@ -48,7 +50,7 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="0.1*" />
             </Grid.RowDefinitions>
-            <DataGrid ItemsSource="{Binding dBTables,UpdateSourceTrigger=PropertyChanged}" CanUserAddRows="False" 
+            <DataGrid ItemsSource="{Binding DBTables,UpdateSourceTrigger=PropertyChanged}" CanUserAddRows="False" 
                       SelectedItem="{Binding Item}"
                       HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" AlternatingRowBackground="White" 
                       AutoGenerateColumns="False" FontSize="16" Margin="10 0" BorderThickness="0" IsReadOnly="True">
@@ -112,6 +114,17 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Height="35" Background="Transparent" Click="Edit" CommandParameter="{Binding Path=Id}">
+                                    <Image Source="icons/edit_ico.ico"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="82" Header="Архив">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Height="35" Background="Transparent" Command="{Binding Path=DataContext.Archive,       
+ RelativeSource= {RelativeSource FindAncestor,
+  AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding Path=Id}">
                                     <Image Source="icons/edit_ico.ico"/>
                                 </Button>
                             </DataTemplate>

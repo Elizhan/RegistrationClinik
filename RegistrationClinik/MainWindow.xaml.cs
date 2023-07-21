@@ -41,6 +41,7 @@ namespace RegistrationClinik
 
         private void Edit(object sender, RoutedEventArgs e)
         {
+            MainWindowVIewModel.VisButton = true;
             object ob = ((Button)sender).CommandParameter;
             new regClient(model).Show();
         }

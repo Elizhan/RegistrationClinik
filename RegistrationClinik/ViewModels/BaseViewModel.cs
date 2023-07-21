@@ -6,7 +6,6 @@ namespace RegistrationClinik.ViewModels
     public class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
-
         protected virtual void OnPropertyChanged([CallerMemberName] string? PropertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
@@ -23,11 +22,12 @@ namespace RegistrationClinik.ViewModels
             Dispose(true);
         }
         private bool _Disposed;
-
         protected virtual void Dispose(bool Disposing)
         {
             if (!Disposing || _Disposed) return;
             _Disposed = true;
         }
+
     }
+
 }

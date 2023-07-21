@@ -7,7 +7,7 @@ namespace RegistrationClinik.Infras
     public class ApplicationConnect : DbContext
     {
         public DbSet<DBTable> DBTables { get; set; }
-        public DbSet<DBTableB> DBTablesB { get; set; }
+        public DbSet<DBArchive> DBArchives { get; set; }
 
         public ApplicationConnect()
         {
