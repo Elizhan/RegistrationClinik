@@ -1,4 +1,5 @@
-﻿using RegistrationClinik.Infras;
+﻿using Microsoft.EntityFrameworkCore;
+using RegistrationClinik.Infras;
 using RegistrationClinik.Models;
 using RegistrationClinik.Views;
 using System;
@@ -25,7 +26,7 @@ namespace RegistrationClinik.ViewModels
 
         #region Props
 
-        public ObservableCollection<DBTable>? dBTables  = new();
+        public ObservableCollection<DBTable>? dBTables = new();
         public ObservableCollection<DBTable>? DBTables
         {
             get
@@ -42,12 +43,12 @@ namespace RegistrationClinik.ViewModels
         public DBTable Item
         {
             get { return item; }
-            set 
+            set
             {
                 if (value is null)
                     item = new DBTable();
                 else
-                    Set(ref item, value); 
+                    Set(ref item, value);
             }
         }
         public ICommand Archive { get; set; }
@@ -86,7 +87,6 @@ namespace RegistrationClinik.ViewModels
                 });
 
                 db.DBTables.Remove(db.DBTables.First(s => s.Id == Item.Id));
-
                 db.SaveChanges();
 
                 GetAllData();
@@ -166,7 +166,7 @@ namespace RegistrationClinik.ViewModels
 
         #endregion
 
-        public void UpdateM(object o) 
+        public void UpdateM(object o)
         {
             GetAllData();
         }
@@ -174,7 +174,7 @@ namespace RegistrationClinik.ViewModels
         {
             using ApplicationConnect db = new();
             var result = db.DBTables;
-            foreach ( DBTable table in result )
+            foreach (DBTable table in result)
             {
                 DBTables.Add(table);
             }

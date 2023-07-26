@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RegistrationClinik.Views"
         xmlns:l ="clr-namespace:RegistrationClinik.ViewModels"
+        xmlns:mt="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="regClient" Height="450" Width="1200" WindowStartupLocation="CenterScreen" WindowStyle="None" Topmost="True">
     <Grid>
