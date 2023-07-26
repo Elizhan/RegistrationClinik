@@ -174,7 +174,7 @@ namespace RegistrationClinik.ViewModels
         {
             using ApplicationConnect db = new();
             var result = db.DBTables;
-            foreach ( DBTable table in result )
+            foreach ( DBTable table in result)
             {
                 DBTables.Add(table);
             }
