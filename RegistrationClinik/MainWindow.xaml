@@ -34,6 +34,7 @@
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="1" Content="регистрация" Margin="10" Click="showAddPage"/>
+                <Button Grid.Column="0" Content="Обновить" Margin="10,10,10,10" Command="{Binding Update}"/>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="1" Margin="10">
                 <Grid.ColumnDefinitions>
@@ -50,8 +51,8 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="0.1*" />
             </Grid.RowDefinitions>
-            <DataGrid ItemsSource="{Binding DBTables,UpdateSourceTrigger=PropertyChanged}" CanUserAddRows="False" 
-                      SelectedItem="{Binding Item}"
+            <DataGrid ItemsSource="{Binding DBTables}" CanUserAddRows="False" 
+                      SelectedItem="{Binding Item,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                       HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" AlternatingRowBackground="White" 
                       AutoGenerateColumns="False" FontSize="16" Margin="10 0" BorderThickness="0" IsReadOnly="True">
                 <DataGrid.Columns>
@@ -113,7 +114,9 @@
                     <DataGridTemplateColumn Width="82" Header="Изменить">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Height="35" Background="Transparent" Click="Edit" CommandParameter="{Binding Path=Id}">
+                                <Button Height="35" Background="Transparent" Command="{Binding Path=DataContext.Edit,       
+ RelativeSource= {RelativeSource FindAncestor,
+  AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding Path=Item.Id}">
                                     <Image Source="icons/edit_ico.ico"/>
                                 </Button>
                             </DataTemplate>
@@ -124,7 +127,7 @@
                             <DataTemplate>
                                 <Button Height="35" Background="Transparent" Command="{Binding Path=DataContext.Archive,       
  RelativeSource= {RelativeSource FindAncestor,
-  AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding Path=Id}">
+  AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding Path=Item.Id}">
                                     <Image Source="icons/edit_ico.ico"/>
                                 </Button>
                             </DataTemplate>
@@ -132,7 +135,6 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <!--<Button  Grid.Row="1"/>-->
         </Grid>
     </Grid>
 </Window>

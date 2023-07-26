@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RegistrationClinik.Views"
         mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=l:MainWindowVIewModel}"
         xmlns:l ="clr-namespace:RegistrationClinik.ViewModels"
         Title="regClient" Height="450" Width="1200" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid>

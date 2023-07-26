@@ -8,24 +8,22 @@ namespace RegistrationClinik.Views
     /// </summary>
     public partial class regClient : Window
     {
-        public MainWindowVIewModel model;
-
-        public regClient(MainWindowVIewModel _model)
+        public regClient(int id = 0)
         {
             InitializeComponent();
-            model = _model;
-            DataContext = model;
+            if (id == 0)
+                DataContext = new RegWindowViewModel();
+            else
+                DataContext = new RegWindowViewModel(id);
         }
 
         private void Close(object sender, RoutedEventArgs e)
         {
-            MainWindowVIewModel.VisButton = true;
             this.Close();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainWindowVIewModel.VisButton = true;
             this.Close();
         }
     }

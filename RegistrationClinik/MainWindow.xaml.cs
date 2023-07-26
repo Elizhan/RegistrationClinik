@@ -1,8 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using RegistrationClinik.Infras;
 using RegistrationClinik.ViewModels;
 using RegistrationClinik.Views;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using Key = System.Windows.Input.Key;
 
@@ -13,19 +12,17 @@ namespace RegistrationClinik
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindowVIewModel model;
-
         public MainWindow()
         {
             InitializeComponent();
-            model = new MainWindowVIewModel();
-            DataContext = model;
+            DataContext = new MainWindowVIewModel();
         } 
 
         private void showAddPage(object sender, RoutedEventArgs e)
         {
-            MainWindowVIewModel.VisButton = false;
-            new regClient(model).Show();
+            StaticFields.IsChange = false;
+
+            new regClient().Show();
         }
 
         private void Close(object sender, RoutedEventArgs e)
@@ -41,9 +38,9 @@ namespace RegistrationClinik
 
         private void Edit(object sender, RoutedEventArgs e)
         {
-            MainWindowVIewModel.VisButton = true;
-            object ob = ((Button)sender).CommandParameter;
-            new regClient(model).Show();
+            StaticFields.IsChange = true;
+            new regClient().Show();
+
         }
     }
 }
