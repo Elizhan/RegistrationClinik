@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RegistrationClinik.Views"
         xmlns:l ="clr-namespace:RegistrationClinik.ViewModels"
+        xmlns:mt="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="regClient" Height="450" Width="1200" WindowStartupLocation="CenterScreen" WindowStyle="None" Topmost="True">
+        Title="regClient" Height="490" Width="1200" WindowStartupLocation="CenterScreen" WindowStyle="None" Topmost="True">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.1*" />
@@ -30,34 +31,34 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Column="1" Grid.Row="0"
-                   Text="Ф.И.О." Style="{DynamicResource textbl}"/>
-            <TextBlock Grid.Column="1" Grid.Row="1" 
-                   Text="Год рождения" Style="{DynamicResource textbl}"/>
-            <TextBlock Grid.Column="1" Grid.Row="2" 
-                   Text="Адресс проживания" Style="{DynamicResource textbl}"/>
-            <TextBlock Grid.Column="1" Grid.Row="3" 
-                   Text="Анализ" Style="{DynamicResource textbl}"/>
-            <TextBlock Grid.Column="1" Grid.Row="4" 
-                   Text="Лечащий врач" Style="{DynamicResource textbl}"/>
-            <TextBlock Grid.Column="3" Grid.Row="0" 
-                   Text="Дата регистрации" Style="{DynamicResource textbl}"/>
-            <TextBlock Grid.Column="3" Grid.Row="1" 
-                   Text="Аванс" Style="{DynamicResource textbl}"/>
-            <TextBlock Grid.Column="3" Grid.Row="2" 
-                   Text="Остаток" Style="{DynamicResource textbl}"/>
-            <TextBlock Grid.Column="3" Grid.Row="3" 
-                   Text="Оплачено" Style="{DynamicResource textbl}"/>
-            <TextBlock Grid.Column="3" Grid.Row="4" 
-                   Text="Оплата" Style="{DynamicResource textbl}"/>
-            <TextBox Text="{Binding Name}" Grid.Column="2" Grid.Row="0" Style="{DynamicResource textbox}"/>
-            <DatePicker SelectedDate="{Binding Birday}" Grid.Column="2" Grid.Row="1" Style="{DynamicResource date}"/>
-            <TextBox Text="{Binding Adres}"  Grid.Column="2" Grid.Row="2" Style="{DynamicResource textbox}"/>
-            <TextBox Text="{Binding Analiz}" Grid.Column="2" Grid.Row="3" Style="{DynamicResource textbox}"/>
-            <TextBox Text="{Binding LDoctor}" Grid.Column="2" Grid.Row="4" Style="{DynamicResource textbox}"/>
-            <DatePicker SelectedDate="{Binding RegistrationDate}" Grid.Column="4" Grid.Row="0" Style="{DynamicResource date}"/>
+            <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Text="Ф.И.О." Style="{DynamicResource MaterialDesignSubtitle2TextBlock}"/>
+            <TextBlock Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                   Text="Год рождения" Style="{DynamicResource MaterialDesignSubtitle2TextBlock}"/>
+            <TextBlock Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                   Text="Адресс проживания" Style="{DynamicResource MaterialDesignSubtitle2TextBlock}"/>
+            <TextBlock Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                   Text="Анализ" Style="{DynamicResource MaterialDesignSubtitle2TextBlock}"/>
+            <TextBlock Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                   Text="Лечащий врач" Style="{DynamicResource MaterialDesignSubtitle2TextBlock}"/>
+            <TextBlock Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                   Text="Дата регистрации" Style="{DynamicResource MaterialDesignSubtitle2TextBlock}"/>
+            <TextBlock Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                   Text="Аванс" Style="{DynamicResource MaterialDesignSubtitle2TextBlock}"/>
+            <TextBlock Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                   Text="Остаток" Style="{DynamicResource MaterialDesignSubtitle2TextBlock}"/>
+            <TextBlock Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Text="Оплачено" Style="{DynamicResource MaterialDesignSubtitle2TextBlock}"/>
+            <TextBlock Grid.Column="3" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Text="Оплата" Style="{DynamicResource MaterialDesignSubtitle2TextBlock}"/>
+            <TextBox Text="{Binding Name}" mt:HintAssist.Hint="Ф.И.О" Grid.Column="2" Grid.Row="0" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10"/>
+            <DatePicker SelectedDate="{Binding Birday}" mt:HintAssist.Hint="Год рождения" Grid.Column="2" Grid.Row="1" Style="{DynamicResource MaterialDesignOutlinedDatePicker}" Margin="10"/>
+            <TextBox Text="{Binding Adres}" mt:HintAssist.Hint="Место проживание"  Grid.Column="2" Grid.Row="2" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10"/>
+            <TextBox Text="{Binding Analiz}" mt:HintAssist.Hint="Код анализа" Grid.Column="2" Grid.Row="3" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10"/>
+            <TextBox Text="{Binding LDoctor}" mt:HintAssist.Hint="Ф.И.О. врача" Grid.Column="2" Grid.Row="4" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10"/>
+            <DatePicker SelectedDate="{Binding RegistrationDate}" mt:HintAssist.Hint="Дата регистрации" Grid.Column="4" Grid.Row="0" Style="{DynamicResource MaterialDesignOutlinedDatePicker}" Margin="10"/>
             <!--<TextBox  Grid.Column="4" Grid.Row="0" Style="{DynamicResource textbox}"/>-->
-            <TextBox Grid.Column="4" Grid.Row="1" Style="{DynamicResource textbox}">
+            <TextBox Grid.Column="4" Grid.Row="1" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10">
                 <TextBox.Text>
                     <Binding Path="Avans">
                         <Binding.ValidationRules>
@@ -66,7 +67,7 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            <TextBox Grid.Column="4" Grid.Row="2" Style="{DynamicResource textbox}">
+            <TextBox Grid.Column="4" Grid.Row="2" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10">
                 <TextBox.Text>
                     <Binding Path="Ostatok">
                         <Binding.ValidationRules>
@@ -75,7 +76,7 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            <TextBox Grid.Column="4" Grid.Row="3" Style="{DynamicResource textbox}">
+            <TextBox Grid.Column="4" Grid.Row="3" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10">
                 <TextBox.Text>
                     <Binding Path="Oplacheno">
                         <Binding.ValidationRules>
@@ -84,7 +85,7 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            <TextBox Grid.Column="4" Grid.Row="4" Style="{DynamicResource textbox}">
+            <TextBox Grid.Column="4" Grid.Row="4" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10">
                 <TextBox.Text>
                     <Binding Path="Oplata">
                         <Binding.ValidationRules>
@@ -94,7 +95,7 @@
                 </TextBox.Text>
             </TextBox>
 
-            <Button Grid.Column="1" Grid.Row="5" 
+            <Button Grid.Column="1" Grid.Row="5" Background="Red"
                 Content="Отмена" Margin="20" Click="Close"/>
             <Button Grid.Column="3" Grid.Row="5" x:Name="cancel"
                 Content="Изменить" Margin="20" Command="{Binding CreateB}"/>
