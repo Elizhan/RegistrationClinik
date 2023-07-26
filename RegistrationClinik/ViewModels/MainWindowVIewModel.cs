@@ -26,16 +26,16 @@ namespace RegistrationClinik.ViewModels
 
         #region Props
 
-        public ObservableCollection<DBTable>? dBTables = new();
-        public ObservableCollection<DBTable>? DBTables
+        public ObservableCollection<DBTable>? clientCollection = new();
+        public ObservableCollection<DBTable>? ClientCollection
         {
             get
             {
-                return dBTables;
+                return clientCollection;
             }
             set
             {
-                Set(ref dBTables, value);
+                Set(ref clientCollection, value);
             }
         }
 
@@ -62,6 +62,7 @@ namespace RegistrationClinik.ViewModels
 
         private void EditMethod(object obj)
         {
+            StaticFields.IsChange = true;
             new regClient(Item.Id).Show();
         }
 
@@ -173,7 +174,7 @@ namespace RegistrationClinik.ViewModels
         public void GetAllData()
         {
             using ApplicationConnect db = new();
-            DBTables = new ObservableCollection<DBTable>(db.DBTables);
+            ClientCollection = new ObservableCollection<DBTable>(db.DBTables);
         }
     }
 }

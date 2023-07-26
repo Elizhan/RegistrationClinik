@@ -2,6 +2,6 @@
 {
     public static class StaticFields
     {
-        public static bool IsChange = false;
+        public static bool IsChange { get; set; } = false;
     }
 }
