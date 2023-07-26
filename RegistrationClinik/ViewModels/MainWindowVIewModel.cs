@@ -173,11 +173,7 @@ namespace RegistrationClinik.ViewModels
         public void GetAllData()
         {
             using ApplicationConnect db = new();
-            var result = db.DBTables;
-            foreach ( DBTable table in result )
-            {
-                DBTables.Add(table);
-            }
+            DBTables = new ObservableCollection<DBTable>(db.DBTables);
         }
     }
 }
