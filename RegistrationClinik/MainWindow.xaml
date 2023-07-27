@@ -41,7 +41,7 @@
                     <ColumnDefinition Width="0.1*" />
                     <ColumnDefinition Width="0.6*" />
                 </Grid.ColumnDefinitions>
-                <TextBox FontSize="20"/>
+                <TextBox FontSize="16"/>
                 <Button Grid.Column="2" Content="поиск" Command="{Binding}"/>
             </Grid>
         </Grid>
