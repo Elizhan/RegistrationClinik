@@ -39,7 +39,22 @@ namespace RegistrationClinik.ViewModels
                 Set(ref selectedClient, value);
             }
         }
-
+        private string searchText = string.Empty;
+        public string SearchText
+        {
+            get
+            {
+                return searchText;
+            }
+            set
+            {
+                Set(ref searchText, value);
+                if (string.IsNullOrEmpty(value))
+                    GetAllDate();
+                else
+                    SearchByText(value);
+            }
+        }
         public bool IsChange { get; set; } = false;
 
         #endregion
@@ -111,6 +126,13 @@ namespace RegistrationClinik.ViewModels
                         RegistrationDate = result[i].RegistrationDate,
                     });
             }
+        }
+        private void SearchByText(string value)
+        {
+            if (ClientCollection is null && ClientCollection == new ObservableCollection<ShowTableModel>())
+                return;
+            GetAllDate();
+            ClientCollection = new ObservableCollection<ShowTableModel>(ClientCollection.Where(s => s.Name.Contains(value)));
         }
     }
 }
