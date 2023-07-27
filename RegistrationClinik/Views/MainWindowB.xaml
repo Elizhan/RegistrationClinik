@@ -33,7 +33,7 @@
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="1" Content="регистрация" Margin="10" Command="{Binding EditCommand}" CommandParameter="1"/>
+                <Button Grid.Column="1" Content="Регистрация" Margin="10" Command="{Binding EditCommand}" CommandParameter="1"/>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="1" Margin="10">
                 <Grid.ColumnDefinitions>
@@ -46,6 +46,10 @@
             </Grid>
         </Grid>
         <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="39*"/>
+                <ColumnDefinition Width="121*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="0.1*" />
@@ -53,7 +57,7 @@
             <DataGrid ItemsSource="{Binding ClientCollection,UpdateSourceTrigger=PropertyChanged}" CanUserAddRows="False" 
                       SelectedItem="{Binding SelectedClient,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                       HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" AlternatingRowBackground="White" 
-                      AutoGenerateColumns="False" FontSize="16" Margin="10 0" BorderThickness="0" IsReadOnly="True">
+                      AutoGenerateColumns="False" FontSize="16" Margin="10,0,10,89" BorderThickness="0" IsReadOnly="True" Grid.ColumnSpan="2" Grid.RowSpan="2">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="№" Width="0.2*" Binding="{Binding Id}"/>
                     <DataGridTextColumn Header="Ф.И.О." Width="*" Binding="{Binding Name}"/>
