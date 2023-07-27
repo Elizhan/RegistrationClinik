@@ -42,7 +42,7 @@
                     <ColumnDefinition Width="0.1*" />
                     <ColumnDefinition Width="0.6*" />
                 </Grid.ColumnDefinitions>
-                <TextBox Text="{Binding SearchText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
+                <TextBox mt:HintAssist.Hint="поиск" FontSize="18" Text="{Binding SearchText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                 <Button Grid.Column="2" Content="поиск" Command="{Binding}"/>
             </Grid>
         </Grid>
