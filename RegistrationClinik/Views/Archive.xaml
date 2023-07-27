@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RegistrationClinik.Views"
+        xmlns:mt="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="Archive" Height="1080" Width="1920" Topmost="True" WindowStyle="None">
     <Grid>
@@ -21,7 +22,8 @@
             <Button Content="Поиск" Width="140" Margin="10 0"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="40 0">
-            
+            <TextBox Width="270" mt:HintAssist.Hint="поиск" FontSize="20" Text="{Binding SearchText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0"/>
+            <Button Content="Поиск" Width="140" Margin="10 0"/>
         </StackPanel>
         <DataGrid ItemsSource="{Binding ClientCollection,UpdateSourceTrigger=PropertyChanged}" CanUserAddRows="False" 
                       SelectedItem="{Binding SelectedClient,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="1"
@@ -39,7 +41,7 @@
                 <DataGridTextColumn Header="Остаток" Width="0.25*"  Binding="{Binding Ostatok}"/>
                 <DataGridTextColumn Header="Оплачено" Width="0.29*"  Binding="{Binding Oplacheno}"/>
                 <DataGridTextColumn Header="Оплата" Width="0.34*"  Binding="{Binding Oplata}"/>
-                <DataGridTemplateColumn Width="130" Header="Изменить">
+                <!--<DataGridTemplateColumn Width="130" Header="Изменить">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Height="30" Command="{Binding Path=DataContext.EditCommand , 
@@ -55,9 +57,10 @@
                                         AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding Path=Item.Id}" Content="Архив"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                </DataGridTemplateColumn>-->
             </DataGrid.Columns>
         </DataGrid>
-
+        <Button Grid.Row="2" Background="Red" Width="300" HorizontalAlignment="Left"
+                Content="Закрыть" Margin="20 0" Click="Close"/>
     </Grid>
 </Window>
