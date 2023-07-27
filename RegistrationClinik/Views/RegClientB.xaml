@@ -99,7 +99,7 @@
 
             <Button Grid.Column="1" Grid.Row="5" Background="Red"
                 Content="Отмена" Margin="20" Click="Close"/>
-            <Button Grid.Column="4" Grid.Row="5" 
+            <Button Background="Green" Grid.Column="4" Grid.Row="5" 
                 Content="{Binding ButtonName}" Margin="10" Command="{Binding CreateCommand}" Cursor="Hand"/>
         </Grid>
 
