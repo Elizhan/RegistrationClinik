@@ -47,10 +47,6 @@
             </Grid>
         </Grid>
         <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="39*"/>
-                <ColumnDefinition Width="121*"/>
-            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="0.1*" />
@@ -58,7 +54,7 @@
             <DataGrid ItemsSource="{Binding ClientCollection,UpdateSourceTrigger=PropertyChanged}" CanUserAddRows="False" 
                       SelectedItem="{Binding SelectedClient,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                       HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" AlternatingRowBackground="White" 
-                      AutoGenerateColumns="False" FontSize="16" Margin="10,0,10,89" BorderThickness="0" IsReadOnly="True" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                      AutoGenerateColumns="False" FontSize="16" Margin="10,0,10,89" BorderThickness="0" IsReadOnly="True" Grid.RowSpan="2">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="№" Width="0.17*" Binding="{Binding Number}"/>
                     <DataGridTextColumn Header="Ф.И.О." Width="*" Binding="{Binding Name}"/>
@@ -91,6 +87,7 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
+            <Button Height="40" Width="220" FontSize="18" Background="Green" Grid.Row="1" HorizontalAlignment="Right" Content="Посмотреть архив" Margin="20 0"/>
         </Grid>
     </Grid>
 </Window>
