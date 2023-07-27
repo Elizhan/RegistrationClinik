@@ -22,15 +22,5 @@ namespace RegistrationClinik.Views
         {
             this.Close();
         }
-
-        private void showAddPage(object sender, RoutedEventArgs e)
-        {
-            new RegClientB(model).Show();
-        }
-
-        private void openArchive(object sender, RoutedEventArgs e)
-        {
-            new ArchiveB().Show();
-        }
     }
 }
