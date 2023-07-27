@@ -27,7 +27,5 @@ namespace RegistrationClinik.ViewModels
             if (!Disposing || _Disposed) return;
             _Disposed = true;
         }
-
     }
-
 }

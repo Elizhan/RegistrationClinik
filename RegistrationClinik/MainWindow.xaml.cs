@@ -16,14 +16,7 @@ namespace RegistrationClinik
         {
             InitializeComponent();
             DataContext = new MainWindowVIewModel();
-        } 
-
-        private void showAddPage(object sender, RoutedEventArgs e)
-        {
-            StaticFields.IsChange = false;
-            new regClient().Show();
         }
-
         private void Close(object sender, RoutedEventArgs e)
         {
             this.Close();

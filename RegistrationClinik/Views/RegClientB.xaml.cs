@@ -28,19 +28,15 @@ namespace RegistrationClinik.Views
             model = _model;
             DataContext = model;
 
-            if (BMainWindowViewModel.VisButtonB == false)
-                cancel.IsEnabled = false;
         }
 
         private void Close(object sender, RoutedEventArgs e)
         {
-            BMainWindowViewModel.VisButtonB = true;
             this.Close();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            BMainWindowViewModel.VisButtonB = true;
             this.Close();
         }
     }

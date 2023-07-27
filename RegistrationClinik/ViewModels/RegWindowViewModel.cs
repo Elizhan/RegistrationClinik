@@ -1,5 +1,6 @@
 ﻿using RegistrationClinik.Infras;
 using RegistrationClinik.Models;
+using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -8,74 +9,53 @@ namespace RegistrationClinik.ViewModels
 {
     public class RegWindowViewModel : BaseViewModel
     {
-        public RegWindowViewModel(int id = 0)
+        private MainWindowVIewModel model;
+        public RegWindowViewModel(MainWindowVIewModel _model)
         {
-            Create = new LambdaCommand(CreateMethod, CanCloseApplicationExecate);
-
-            if (id != 0) 
-            {
-                using ApplicationConnect db = new();
-                Item = db.DBTables.FirstOrDefault(s=>s.Id == id);
-            }
+            model = _model;
+            CreateCommand = new LambdaCommand(CreateCommandExcecute, CanCreateCommandExcecuted);
+            if (model.IsChange)
+                Item = model.SelectedClient;
         }
-
-        private string? buttonName = "Сохранить";
-        public string? ButtonName
+        public RegWindowViewModel()
         {
-            get { return buttonName; }
-            set
-            {
-                Set(ref buttonName, value);
-            }
+            
         }
 
         private DBTable item = new();
         public DBTable Item
         {
             get { return item; }
-            set
-            {
-                Set(ref item, value);
-            }
+            set { Set(ref item, value); }
         }
-        public ICommand Create { get; set; }
-
-        public void CreateMethod(object o)
+        private string buttonName = "Сохранить";
+        public string ButtonName
         {
-            using (ApplicationConnect db = new())
+            get { return buttonName; }
+            set { buttonName = value; }
+        }
+        public ICommand CreateCommand { get; set; }
+        private bool CanCreateCommandExcecuted(object arg) 
+        {
+            ButtonName = model.IsChange ? "Изменить" : "Сохранить";
+            return true;
+        }
+        private void CreateCommandExcecute(object obj)
+        {
+            using (ApplicationConnect db = new ApplicationConnect())
             {
-                if (StaticFields.IsChange)
+                if (model.IsChange)
                 {
-                    var r = db.DBTables.FirstOrDefault(s => s.Id == Item.Id);
-                    db.DBTables.Remove(r);
                     db.DBTables.Add(Item);
                 }
-                else
+                else 
                 {
-                    db.DBTables.Add(new Models.DBTable()
-                    {
-                        Adres = Item.Adres,
-                        Analiz = Item.Analiz,
-                        Avans = Item.Avans,
-                        Birday = Item.Birday,
-                        LDoctor = Item.LDoctor,
-                        Name = Item.Name,
-                        Oplacheno = Item.Oplacheno,
-                        Oplata = Item.Oplata,
-                        Ostatok = Item.Ostatok,
-                        RegistrationDate = Item.RegistrationDate,
-                        IsShow = 1,
-                    });
+                    var result = db.DBTables.FirstOrDefault(s => s.Id == Item.Id);
+                    result = Item;
                 }
                 db.SaveChanges();
-                MessageBox.Show("Данные успешно сохранены");
+                model.GetAllDate();
             }
-        }
-
-        public bool CanCloseApplicationExecate(object o)
-        {
-            ButtonName = StaticFields.IsChange ? "Изменить" : "Сохранить";
-            return true;
         }
     }
 }
