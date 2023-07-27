@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RegistrationClinik.Models
 {
@@ -16,6 +12,6 @@ namespace RegistrationClinik.Models
         public string? LDoctor { get; set; }
         public DateTime? RegistrationDate { get; set; }
         public decimal? Oplata { get; set; }
-        public int IsShow { get; set; }
+        public int IsShow { get; set; } = 1;
     }
 }

@@ -15,6 +15,6 @@ namespace RegistrationClinik.Models
         public decimal? Ostatok { get; set; } = 0;
         public decimal? Oplacheno { get; set; } = 0;
         public decimal? Oplata { get; set; } = 0;
-        public int IsShow { get; set; } = 0;
+        public int IsShow { get; set; } = 1;
     }
 }

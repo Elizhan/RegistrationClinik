@@ -51,7 +51,7 @@ namespace RegistrationClinik.ViewModels
             {
                 db.DBArchives.Add(new DBArchive
                 {
-                    IsShow = 1,
+                    IsShow = 0,
                     Adres = SelectedClient.Adres,
                     Name = SelectedClient.Name,
                     Birday = SelectedClient.Birday,
