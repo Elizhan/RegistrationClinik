@@ -24,7 +24,6 @@ namespace RegistrationClinik.Views
 
         private void showAddPage(object sender, RoutedEventArgs e)
         {
-            BMainWindowViewModel.VisButtonB = false;
             new RegClientB(model).Show();
         }
     }

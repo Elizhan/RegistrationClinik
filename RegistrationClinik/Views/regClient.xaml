@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RegistrationClinik.Views"
         xmlns:mt="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        d:DataContext="{d:DesignInstance Type=l:MainWindowVIewModel}"
+        d:DataContext="{d:DesignInstance Type=l:RegWindowViewModel}"
         xmlns:l ="clr-namespace:RegistrationClinik.ViewModels"
         Title="regClient" Height="490" Width="1200" WindowStartupLocation="CenterScreen" WindowStyle="None" Topmost="True" MouseDown="Window_MouseDown">
     <Grid>
@@ -52,16 +52,16 @@
                    Text="Оплачено" Style="{DynamicResource MaterialDesignSubtitle2TextBlock}"/>
             <TextBlock Grid.Column="3" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"
                    Text="Оплата" Style="{DynamicResource MaterialDesignSubtitle2TextBlock}"/>
-            <TextBox Text="{Binding Item.Name}" mt:HintAssist.Hint="Ф.И.О" Grid.Column="2" Grid.Row="0" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10"/>
-            <DatePicker SelectedDate="{Binding Item.Birday}" mt:HintAssist.Hint="Год рождения" Grid.Column="2" Grid.Row="1" Style="{DynamicResource MaterialDesignOutlinedDatePicker}" Margin="10"/>
-            <TextBox Text="{Binding Item.Adres}" mt:HintAssist.Hint="Место проживание"  Grid.Column="2" Grid.Row="2" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10"/>
-            <TextBox Text="{Binding Item.Analiz}" mt:HintAssist.Hint="Код анализа" Grid.Column="2" Grid.Row="3" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10"/>
-            <TextBox Text="{Binding Item.LDoctor}" mt:HintAssist.Hint="Ф.И.О. врача" Grid.Column="2" Grid.Row="4" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10"/>
-            <DatePicker SelectedDate="{Binding Item.RegistrationDate}" mt:HintAssist.Hint="Дата регистрации" Grid.Column="4" Grid.Row="0" Style="{DynamicResource MaterialDesignOutlinedDatePicker}" Margin="10"/>
+            <TextBox Text="{Binding Item.Name, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" mt:HintAssist.Hint="Ф.И.О" Grid.Column="2" Grid.Row="0" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10"/>
+            <DatePicker SelectedDate="{Binding Item.Birday, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" mt:HintAssist.Hint="Год рождения" Grid.Column="2" Grid.Row="1" Style="{DynamicResource MaterialDesignOutlinedDatePicker}" Margin="10"/>
+            <TextBox Text="{Binding Item.Adres, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" mt:HintAssist.Hint="Место проживание"  Grid.Column="2" Grid.Row="2" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10"/>
+            <TextBox Text="{Binding Item.Analiz, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" mt:HintAssist.Hint="Код анализа" Grid.Column="2" Grid.Row="3" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10"/>
+            <TextBox Text="{Binding Item.LDoctor, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" mt:HintAssist.Hint="Ф.И.О. врача" Grid.Column="2" Grid.Row="4" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10"/>
+            <DatePicker SelectedDate="{Binding Item.RegistrationDate, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" mt:HintAssist.Hint="Дата регистрации" Grid.Column="4" Grid.Row="0" Style="{DynamicResource MaterialDesignOutlinedDatePicker}" Margin="10"/>
             <!--<TextBox  Grid.Column="4" Grid.Row="0" Style="{DynamicResource textbox}"/>-->
             <TextBox Grid.Column="4" Grid.Row="1" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10">
                 <TextBox.Text>
-                    <Binding Path="Item.Avans">
+                    <Binding Path="Item.Avans, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged">
                         <Binding.ValidationRules>
                             <ExceptionValidationRule />
                         </Binding.ValidationRules>
@@ -70,7 +70,7 @@
             </TextBox>
             <TextBox Grid.Column="4" Grid.Row="2" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10">
                 <TextBox.Text>
-                    <Binding Path="Item.Ostatok">
+                    <Binding Path="Item.Ostatok, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged">
                         <Binding.ValidationRules>
                             <ExceptionValidationRule />
                         </Binding.ValidationRules>
@@ -79,7 +79,7 @@
             </TextBox>
             <TextBox Grid.Column="4" Grid.Row="3" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10">
                 <TextBox.Text>
-                    <Binding Path="Item.Oplacheno">
+                    <Binding Path="Item.Oplacheno, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged">
                         <Binding.ValidationRules>
                             <ExceptionValidationRule />
                         </Binding.ValidationRules>
@@ -88,7 +88,7 @@
             </TextBox>
             <TextBox Grid.Column="4" Grid.Row="4" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10">
                 <TextBox.Text>
-                    <Binding Path="Item.Oplata">
+                    <Binding Path="Item.Oplata, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged">
                         <Binding.ValidationRules>
                             <ExceptionValidationRule />
                         </Binding.ValidationRules>

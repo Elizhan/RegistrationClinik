@@ -8,13 +8,10 @@ namespace RegistrationClinik.Views
     /// </summary>
     public partial class regClient : Window
     {
-        public regClient(int id = 0)
+        public regClient(MainWindowVIewModel model)
         {
             InitializeComponent();
-            if (id == 0)
-                DataContext = new RegWindowViewModel();
-            else
-                DataContext = new RegWindowViewModel(id);
+            DataContext = new RegWindowViewModel(model);
         }
 
         private void Close(object sender, RoutedEventArgs e)
