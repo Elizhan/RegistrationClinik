@@ -62,7 +62,7 @@
             <!--<TextBox  Grid.Column="4" Grid.Row="0" Style="{DynamicResource textbox}"/>-->
             <TextBox Grid.Column="4" Grid.Row="1" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10">
                 <TextBox.Text>
-                    <Binding Path="Item.Avans, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged">
+                    <Binding Path="Item.Avans">
                         <Binding.ValidationRules>
                             <ExceptionValidationRule />
                         </Binding.ValidationRules>
@@ -71,7 +71,7 @@
             </TextBox>
             <TextBox Grid.Column="4" Grid.Row="2" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10">
                 <TextBox.Text>
-                    <Binding Path="Item.Ostatok, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged">
+                    <Binding Path="Item.Ostatok">
                         <Binding.ValidationRules>
                             <ExceptionValidationRule />
                         </Binding.ValidationRules>
@@ -80,7 +80,7 @@
             </TextBox>
             <TextBox Grid.Column="4" Grid.Row="3" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10">
                 <TextBox.Text>
-                    <Binding Path="Item.Oplacheno, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged">
+                    <Binding Path="Item.Oplacheno">
                         <Binding.ValidationRules>
                             <ExceptionValidationRule />
                         </Binding.ValidationRules>
@@ -89,7 +89,7 @@
             </TextBox>
             <TextBox Grid.Column="4" Grid.Row="4" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10">
                 <TextBox.Text>
-                    <Binding Path="Item.Oplata, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged">
+                    <Binding Path="Item.Oplata">
                         <Binding.ValidationRules>
                             <ExceptionValidationRule />
                         </Binding.ValidationRules>

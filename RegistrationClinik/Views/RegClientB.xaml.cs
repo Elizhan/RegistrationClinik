@@ -26,8 +26,7 @@ namespace RegistrationClinik.Views
         {
             InitializeComponent();
             model = _model;
-            DataContext = model;
-
+            DataContext = new RegBWindowViewModel(_model);
         }
 
         private void Close(object sender, RoutedEventArgs e)
