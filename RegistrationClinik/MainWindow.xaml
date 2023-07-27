@@ -41,8 +41,8 @@
                     <ColumnDefinition Width="0.1*" />
                     <ColumnDefinition Width="0.6*" />
                 </Grid.ColumnDefinitions>
-                <TextBox FontSize="20"/>
-                <Button Grid.Column="2" Content="поиск" Command="{Binding}"/>
+                <TextBox FontSize="20" Text="{Binding SearchText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Grid.Column="2" Content="поиск" />
             </Grid>
         </Grid>
         <Grid Grid.Row="1">

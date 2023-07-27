@@ -41,7 +41,7 @@
                     <ColumnDefinition Width="0.1*" />
                     <ColumnDefinition Width="0.6*" />
                 </Grid.ColumnDefinitions>
-                <TextBox FontSize="20"/>
+                <TextBox Text="{Binding SearchText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
                 <Button Grid.Column="2" Content="поиск" Command="{Binding}"/>
             </Grid>
         </Grid>
@@ -59,7 +59,7 @@
                       HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" AlternatingRowBackground="White" 
                       AutoGenerateColumns="False" FontSize="16" Margin="10,0,10,89" BorderThickness="0" IsReadOnly="True" Grid.ColumnSpan="2" Grid.RowSpan="2">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="№" Width="0.2*" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="№" Width="0.2*" Binding="{Binding Number}"/>
                     <DataGridTextColumn Header="Ф.И.О." Width="*" Binding="{Binding Name}"/>
                     <DataGridTextColumn Header="Дата рождения" Width="0.35*" Binding="{Binding Birday,StringFormat=dd.MM.yyyy}"/>
                     <DataGridTextColumn Header="Адресс" Width=".8*" Binding="{Binding Adres}"/>

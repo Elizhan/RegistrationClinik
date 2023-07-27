@@ -1,6 +1,7 @@
 ﻿using RegistrationClinik.Infras;
 using RegistrationClinik.Models;
 using RegistrationClinik.Views;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -34,6 +35,23 @@ namespace RegistrationClinik.ViewModels
             set
             {
                 Set(ref selectedClient, value);
+            }
+        }
+
+        private string searchText = string.Empty;
+        public string SearchText
+        {
+            get
+            {
+                return searchText;
+            }
+            set
+            {
+                Set(ref searchText, value);
+                if (string.IsNullOrEmpty(value))
+                    GetAllDate();
+                else
+                    SearchByText(value);
             }
         }
 
@@ -108,7 +126,15 @@ namespace RegistrationClinik.ViewModels
                         Ostatok = result[i].Ostatok,
                         RegistrationDate = result[i].RegistrationDate,
                     });
-            }   
+            }
+        }
+
+        private void SearchByText(string value)
+        {
+            if (ClientCollection is null && ClientCollection == new ObservableCollection<ShowTableModel>())
+                return;
+            GetAllDate();
+            ClientCollection = new ObservableCollection<ShowTableModel>(ClientCollection.Where(s=>s.Name.Contains(value)));
         }
     }
 }
