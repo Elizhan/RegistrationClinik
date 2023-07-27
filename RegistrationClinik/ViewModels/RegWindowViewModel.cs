@@ -47,7 +47,8 @@ namespace RegistrationClinik.ViewModels
                 if (StaticFields.IsChange)
                 {
                     var r = db.DBTables.FirstOrDefault(s => s.Id == Item.Id);
-                    r = Item;
+                    db.DBTables.Remove(r);
+                    db.DBTables.Add(Item);
                 }
                 else
                 {
@@ -73,7 +74,7 @@ namespace RegistrationClinik.ViewModels
 
         public bool CanCloseApplicationExecate(object o)
         {
-            ButtonName = !StaticFields.IsChange ? "Изменить" : "Сохранить";
+            ButtonName = StaticFields.IsChange ? "Изменить" : "Сохранить";
             return true;
         }
     }

@@ -52,7 +52,7 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="0.1*" />
             </Grid.RowDefinitions>
-            <DataGrid ItemsSource="{Binding DBTables}" CanUserAddRows="False" 
+            <DataGrid ItemsSource="{Binding ClientCollection,UpdateSourceTrigger=PropertyChanged}" CanUserAddRows="False" 
                       SelectedItem="{Binding Item,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                       HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" AlternatingRowBackground="White" 
                       AutoGenerateColumns="False" FontSize="16" Margin="10 0" BorderThickness="0" IsReadOnly="True">

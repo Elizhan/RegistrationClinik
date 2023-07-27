@@ -21,7 +21,6 @@ namespace RegistrationClinik
         private void showAddPage(object sender, RoutedEventArgs e)
         {
             StaticFields.IsChange = false;
-
             new regClient().Show();
         }
 
@@ -34,13 +33,6 @@ namespace RegistrationClinik
         {
             if(e.KeyboardDevice.Modifiers == ModifierKeys.Control && e.Key == Key.Add)
                 new MainWindowB().Show();
-        }
-
-        private void Edit(object sender, RoutedEventArgs e)
-        {
-            StaticFields.IsChange = true;
-            new regClient().Show();
-
         }
     }
 }
