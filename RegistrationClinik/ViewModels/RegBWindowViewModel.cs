@@ -1,22 +1,22 @@
 ﻿using RegistrationClinik.Infras;
 using RegistrationClinik.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace RegistrationClinik.ViewModels
 {
-    public class RegWindowViewModel : BaseViewModel
+    public class RegBWindowViewModel : BaseViewModel
     {
-        private MainWindowVIewModel model;
-        public RegWindowViewModel(MainWindowVIewModel _model)
+        private BMainWindowViewModel model;
+        public RegBWindowViewModel(BMainWindowViewModel _model)
         {
             model = _model;
             CreateCommand = new LambdaCommand(CreateCommandExcecute, CanCreateCommandExcecuted);
             if (model.IsChange)
-            {
-                ButtonName = "Изменить";
                 Item = new DBTable
                 {
                     Id = model.SelectedClient.Id,
@@ -32,11 +32,10 @@ namespace RegistrationClinik.ViewModels
                     Ostatok = model.SelectedClient.Ostatok,
                     RegistrationDate = model.SelectedClient.RegistrationDate
                 };
-            }
         }
-        public RegWindowViewModel()
+        public RegBWindowViewModel()
         {
-            
+
         }
 
         private DBTable item = new();
@@ -52,20 +51,22 @@ namespace RegistrationClinik.ViewModels
             set { buttonName = value; }
         }
         public ICommand CreateCommand { get; set; }
-        private bool CanCreateCommandExcecuted(object arg) 
+        private bool CanCreateCommandExcecuted(object arg)
         {
+            ButtonName = model.IsChange ? "Изменить" : "Сохранить";
             return true;
         }
         private void CreateCommandExcecute(object obj)
         {
             if (Item is null) return;
+            Item.IsShow = 0;
             using (ApplicationConnect db = new ApplicationConnect())
             {
                 if (!model.IsChange)
                 {
                     db.DBTables.Add(Item);
                 }
-                else 
+                else
                 {
                     var result = db.DBTables.FirstOrDefault(s => s.Id == Item.Id);
                     db.DBTables.Remove(result);
