@@ -17,6 +17,8 @@ namespace RegistrationClinik.ViewModels
             model = _model;
             CreateCommand = new LambdaCommand(CreateCommandExcecute, CanCreateCommandExcecuted);
             if (model.IsChange)
+            {
+                ButtonName = "Изменить";
                 Item = new DBTable
                 {
                     Id = model.SelectedClient.Id,
@@ -32,6 +34,7 @@ namespace RegistrationClinik.ViewModels
                     Ostatok = model.SelectedClient.Ostatok,
                     RegistrationDate = model.SelectedClient.RegistrationDate
                 };
+            }
         }
         public RegBWindowViewModel()
         {
@@ -53,7 +56,6 @@ namespace RegistrationClinik.ViewModels
         public ICommand CreateCommand { get; set; }
         private bool CanCreateCommandExcecuted(object arg)
         {
-            ButtonName = model.IsChange ? "Изменить" : "Сохранить";
             return true;
         }
         private void CreateCommandExcecute(object obj)
