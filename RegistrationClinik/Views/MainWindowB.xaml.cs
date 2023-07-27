@@ -13,6 +13,7 @@ namespace RegistrationClinik.Views
         public MainWindowB()
         {
             InitializeComponent();
+            WindowState = WindowState.Maximized;
             model = new BMainWindowViewModel();
             DataContext = model;
         }
@@ -25,6 +26,11 @@ namespace RegistrationClinik.Views
         private void showAddPage(object sender, RoutedEventArgs e)
         {
             new RegClientB(model).Show();
+        }
+
+        private void openArchive(object sender, RoutedEventArgs e)
+        {
+            new ArchiveB().Show();
         }
     }
 }

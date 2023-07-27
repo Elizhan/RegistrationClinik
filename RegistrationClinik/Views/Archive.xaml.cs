@@ -22,6 +22,12 @@ namespace RegistrationClinik.Views
         public Archive()
         {
             InitializeComponent();
+            WindowState = WindowState.Maximized;
+        }
+
+        private void Close(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

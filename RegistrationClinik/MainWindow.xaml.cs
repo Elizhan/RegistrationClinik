@@ -15,6 +15,7 @@ namespace RegistrationClinik
         public MainWindow()
         {
             InitializeComponent();
+            WindowState = WindowState.Maximized;
             DataContext = new MainWindowVIewModel();
         }
         private void Close(object sender, RoutedEventArgs e)
@@ -26,6 +27,11 @@ namespace RegistrationClinik
         {
             if(e.KeyboardDevice.Modifiers == ModifierKeys.Control && e.Key == Key.Add)
                 new MainWindowB().Show();
+        }
+
+        private void openArchive(object sender, RoutedEventArgs e)
+        {
+            new Archive().Show();
         }
     }
 }

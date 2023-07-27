@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RegistrationClinik.Views"
         xmlns:mt="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="ArchiveB" Height="1080" Width="1920" Topmost="True" WindowStyle="None">
+        Title="ArchiveB" Height="1080" Width="1920" Topmost="True" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.1*" />
@@ -53,6 +53,6 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button Grid.Row="2" Background="Red" Width="300" HorizontalAlignment="Left"
-                Content="Закрыть" Margin="20 0" Click="Close"/>
+                Content="Закрыть" Margin="20 0" Click="Close" Cursor="Hand"/>
     </Grid>
 </Window>

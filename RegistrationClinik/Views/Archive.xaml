@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RegistrationClinik.Views"
         xmlns:mt="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Archive" Height="1080" Width="1920" Topmost="True" WindowStyle="None">
+        Title="Archive" Height="1080" Width="1920" Topmost="True" WindowStyle="None"  WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.1*" />
