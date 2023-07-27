@@ -17,7 +17,9 @@ namespace RegistrationClinik.ViewModels
             GetAllDate();
             ArchiveCommand = new LambdaCommand(ArchiveCommandExcecute, CanArchiveCommandExcecuted);
             EditCommand = new LambdaCommand(EditCommandExcecute, CanEditCommandExcecuted);
+            ShowArchiveWindowCommand = new LambdaCommand(ShowArchiveWindowCommandExcecute, CanShowArchiveWindowCommandExcecuted);
         }
+
         #region Props
 
         private ObservableCollection<ShowTableModel> clientCollection;
@@ -60,6 +62,7 @@ namespace RegistrationClinik.ViewModels
         #endregion
         public ICommand ArchiveCommand { get; set; }
         public ICommand EditCommand { get; set; }
+        public ICommand ShowArchiveWindowCommand { get; set; }
         private void ArchiveCommandExcecute(object obj)
         {
             using (ApplicationConnect db = new ApplicationConnect())
@@ -73,7 +76,7 @@ namespace RegistrationClinik.ViewModels
                     Analiz = SelectedClient.Analiz,
                     LDoctor = SelectedClient.LDoctor,
                     Oplata = SelectedClient.Oplata,
-                    RegistrationDate = SelectedClient.RegistrationDate,
+                    RegistrationDate = SelectedClient.RegistrationDate
                 });
                 db.Remove(db.DBTables.FirstOrDefault(s=>s.Id == SelectedClient.Id));
                 db.SaveChanges();
@@ -100,6 +103,15 @@ namespace RegistrationClinik.ViewModels
             else
                 IsChange = true;
             new RegClientB(this).Show();
+        }
+        private bool CanShowArchiveWindowCommandExcecuted(object arg)
+        {
+            return true;
+        }
+
+        private void ShowArchiveWindowCommandExcecute(object obj)
+        {
+            new Archive(true).Show();
         }
 
         public void GetAllDate()
