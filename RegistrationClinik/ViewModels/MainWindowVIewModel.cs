@@ -17,8 +17,8 @@ namespace RegistrationClinik.ViewModels
         }
         #region Props
 
-        private ObservableCollection<DBTable> clientCollection;
-        public ObservableCollection<DBTable> ClientCollection
+        private ObservableCollection<ShowTableModel> clientCollection;
+        public ObservableCollection<ShowTableModel> ClientCollection
         {
             get { return clientCollection; }
             set 
@@ -27,8 +27,8 @@ namespace RegistrationClinik.ViewModels
             }
         }
 
-        private DBTable selectedClient = new();
-        public DBTable SelectedClient
+        private ShowTableModel selectedClient = new();
+        public ShowTableModel SelectedClient
         {
             get { return selectedClient; }
             set
@@ -52,12 +52,12 @@ namespace RegistrationClinik.ViewModels
                     Adres = SelectedClient.Adres,
                     Name = SelectedClient.Name,
                     Birday = SelectedClient.Birday,
-                    Analiz = SelectedClient.Analiz,
+                    Analiz = SelectedClient.Analiz, 
                     LDoctor = SelectedClient.LDoctor,
                     Oplata = SelectedClient.Oplata,
                     RegistrationDate = SelectedClient.RegistrationDate,
                 });
-                db.Remove(SelectedClient);
+                db.Remove(db.DBTables.FirstOrDefault(s=>s.Id==SelectedClient.Id));
                 db.SaveChanges();
                 GetAllDate();
             }
@@ -89,7 +89,25 @@ namespace RegistrationClinik.ViewModels
         {
             using (ApplicationConnect db = new ApplicationConnect())
             {
-                ClientCollection = new ObservableCollection<DBTable>(db.DBTables.Where(s=>s.IsShow == 1));
+                var result = db.DBTables.Where(s => s.IsShow == 1).ToList();
+                ClientCollection = new ObservableCollection<ShowTableModel>();
+                for (int i = 0; i < result.Count; i++)
+                    ClientCollection.Add(new ShowTableModel
+                    {
+                        Number = i+1,
+                        Name = result[i].Name,
+                        Adres = result[i].Adres,
+                        Analiz = result[i].Analiz,
+                        Avans = result[i].Avans,
+                        Birday = result[i].Birday,
+                        Id = result[i].Id,
+                        IsShow = result[i].IsShow,
+                        LDoctor = result[i].LDoctor,
+                        Oplacheno = result[i].Oplacheno,
+                        Oplata = result[i].Oplata,
+                        Ostatok = result[i].Ostatok,
+                        RegistrationDate = result[i].RegistrationDate,
+                    });
             }   
         }
     }

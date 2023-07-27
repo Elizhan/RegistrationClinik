@@ -55,7 +55,7 @@
                       HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" AlternatingRowBackground="White" 
                       AutoGenerateColumns="False" FontSize="16" Margin="10 0" BorderThickness="0" IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="№" Width="0.2*" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="№" Width="0.2*" Binding="{Binding Number}"/>
                     <DataGridTextColumn Header="Ф.И.О." Width="*" Binding="{Binding Name}"/>
                     <DataGridTextColumn Header="Дата рождения" Width="0.35*" Binding="{Binding Birday,StringFormat=dd.MM.yyyy}"/>
                     <DataGridTextColumn Header="Адресс" Width=".8*" Binding="{Binding Adres}"/>
