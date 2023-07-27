@@ -14,6 +14,12 @@ namespace RegistrationClinik.Views
         public Archive(bool isB = false)
         {
             InitializeComponent();
+            WindowState = WindowState.Maximized;
+        }
+
+        private void Close(object sender, RoutedEventArgs e)
+        {
+            this.Close();
             GetAllDate(isB);
         }
         private void GetAllDate(bool isB)
