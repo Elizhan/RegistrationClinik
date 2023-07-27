@@ -87,9 +87,9 @@ namespace RegistrationClinik.ViewModels
                 });
 
                 db.DBTables.Remove(db.DBTables.First(s => s.Id == Item.Id));
+                GetAllData();
                 db.SaveChanges();
 
-                GetAllData();
             }
         }
 
