@@ -30,7 +30,7 @@
                   AlternatingRowBackground="White" AutoGenerateColumns="False" 
                   FontSize="16" Margin="10 0" BorderThickness="0" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="№" Width="0.17*" Binding="{Binding Number}"/>
+                <DataGridTextColumn Header="№" Width="0.17*" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Ф.И.О." Width="*" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Дата рождения" Width="0.4*" Binding="{Binding Birday,StringFormat=dd.MM.yyyy}"/>
                 <DataGridTextColumn Header="Адресс" Width="0.5*" Binding="{Binding Adres}"/>
