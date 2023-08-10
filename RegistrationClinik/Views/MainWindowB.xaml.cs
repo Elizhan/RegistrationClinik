@@ -30,5 +30,10 @@ namespace RegistrationClinik.Views
             if (e.KeyboardDevice.Modifiers == ModifierKeys.Control && e.Key == Key.Add)
                 new MainWindow().Show();
         }
+
+        private void Button_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

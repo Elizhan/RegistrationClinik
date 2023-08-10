@@ -29,8 +29,13 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            <TextBlock Text="Клиника АНАР" VerticalAlignment="Center" HorizontalAlignment="Center"
-                       Grid.ColumnSpan="2" FontSize="24" Foreground="Red" FontWeight="Bold"/>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
+                       Grid.ColumnSpan="2">
+                <Button Content="Клиника АНАР" FontSize="24" Foreground="Red" FontWeight="Bold" Margin="0" 
+                        Padding="0" Background="Transparent" BorderThickness="0" MouseDoubleClick="Button_MouseDoubleClick">
+                    
+                </Button>
+            </TextBlock>
             <Button Content="X" Height="30"  VerticalAlignment="Center" HorizontalAlignment="Right"
                     Grid.ColumnSpan="3" VerticalContentAlignment="Center" Width="30" FontSize="18" Margin="0 0 20 0"
                     Background="Red" Foreground="White" Click="Close" Padding="0 0 0 3"/>
