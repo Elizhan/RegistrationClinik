@@ -23,8 +23,8 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            <TextBlock Text="Регистрация имя заведения" VerticalAlignment="Center" HorizontalAlignment="Center"
-                       Grid.ColumnSpan="2" FontSize="24"/>
+            <TextBlock Text="Клиника АНАР" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       Grid.ColumnSpan="2" FontSize="24" FontWeight="Bold"/>
             <Button Content="X" Height="30"  VerticalAlignment="Center" HorizontalAlignment="Right"
                     Grid.ColumnSpan="3" VerticalContentAlignment="Center" Width="30" FontSize="18" Margin="0 0 20 0"
                     Background="Red" Foreground="White" Click="Close" Padding="0 0 0 3"/>
@@ -56,16 +56,16 @@
                       AutoGenerateColumns="False" FontSize="16" Margin="10 0" BorderThickness="0" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="№" Width="0.17*" Binding="{Binding Number}"/>
+                    <DataGridTextColumn Header="Дата регистрации" Width="0.4*" Binding="{Binding RegistrationDate, StringFormat=dd.MM.yyyy HH:mm}"/>
                     <DataGridTextColumn Header="Ф.И.О." Width="*" Binding="{Binding Name}"/>
                     <DataGridTextColumn Header="Дата рождения" Width="0.4*" Binding="{Binding Birday,StringFormat=dd.MM.yyyy}"/>
                     <DataGridTextColumn Header="Адресс" Width="0.5*" Binding="{Binding Adres}"/>
+                    <DataGridTextColumn Header="Аванс" Width="0.25*"  Binding="{Binding Avans}"/>
+                    <DataGridTextColumn Header="Оплата" Width="0.34*"  Binding="{Binding Oplata}"/>
                     <DataGridTextColumn Header="Анализ" Width="0.3*" Binding="{Binding Analiz}"/>
                     <DataGridTextColumn Header="Лечащий врач" Width="0.6*" Binding="{Binding LDoctor}"/>
-                    <DataGridTextColumn Header="Дата регистрации" Width="0.4*" Binding="{Binding RegistrationDate, StringFormat=dd.MM.yyyy HH:mm}"/>
-                    <DataGridTextColumn Header="Аванс" Width="0.25*"  Binding="{Binding Avans}"/>
-                    <DataGridTextColumn Header="Остаток" Width="0.25*"  Binding="{Binding Ostatok}"/>
-                    <DataGridTextColumn Header="Оплачено" Width="0.29*"  Binding="{Binding Oplacheno}"/>
-                    <DataGridTextColumn Header="Оплата" Width="0.34*"  Binding="{Binding Oplata}"/>
+                    <!--<DataGridTextColumn Header="Остаток" Width="0.25*"  Binding="{Binding Ostatok}"/>-->
+                    <!--<DataGridTextColumn Header="Оплачено" Width="0.29*"  Binding="{Binding Oplacheno}"/>-->
                     <DataGridTemplateColumn Width="130" Header="Изменить">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
