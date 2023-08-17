@@ -33,7 +33,7 @@ namespace RegistrationClinik.Views
 
         private void Button_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            new MainWindow().Show();
         }
     }
 }
