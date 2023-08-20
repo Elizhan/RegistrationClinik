@@ -86,7 +86,7 @@
                     <DataGridTemplateColumn Width="120" Header="На белый">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Height="30" Padding="0" Margin="7"  Command="{Binding Path=DataContext.EditCommand , 
+                                <Button Background="{Binding BackColor}" Height="30" Padding="0" Margin="7"  Command="{Binding Path=DataContext.GetWhiteCommand , 
                                     RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" 
                                         CommandParameter="0" Content="Добавить"/>
                             </DataTemplate>

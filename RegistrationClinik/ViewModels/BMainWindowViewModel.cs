@@ -18,7 +18,11 @@ namespace RegistrationClinik.ViewModels
             ArchiveCommand = new LambdaCommand(ArchiveCommandExcecute, CanArchiveCommandExcecuted);
             EditCommand = new LambdaCommand(EditCommandExcecute, CanEditCommandExcecuted);
             ShowArchiveWindowCommand = new LambdaCommand(ShowArchiveWindowCommandExcecute, CanShowArchiveWindowCommandExcecuted);
+            GetWhiteCommand = new LambdaCommand(GetWhiteCommandExcecute, CanGetWhiteCommandExcecuted);
+            
         }
+
+      
 
         #region Props
 
@@ -63,6 +67,27 @@ namespace RegistrationClinik.ViewModels
         public ICommand ArchiveCommand { get; set; }
         public ICommand EditCommand { get; set; }
         public ICommand ShowArchiveWindowCommand { get; set; }
+        public ICommand GetWhiteCommand { get; set; }
+
+        private bool CanGetWhiteCommandExcecuted(object arg)
+        {
+            return true;
+        }
+        private void GetWhiteCommandExcecute(object obj)
+        {
+            using (ApplicationConnect db = new ApplicationConnect())
+            {
+                var result = db.DBTables.FirstOrDefault(s=>s.Id == selectedClient.Id);
+                if (result != null)
+                {
+                    result.IsShow = 1;
+                }
+                db.SaveChanges();
+                MessageBox.Show("Успешно!");
+                GetAllDate();
+            }
+        }
+
         private void ArchiveCommandExcecute(object obj)
         {
             using (ApplicationConnect db = new ApplicationConnect())
@@ -102,7 +127,7 @@ namespace RegistrationClinik.ViewModels
                 IsChange = false;
             else
                 IsChange = true;
-            new RegClientB(this).Show();
+            new regClient(this).Show();
         }
         private bool CanShowArchiveWindowCommandExcecuted(object arg)
         {
@@ -127,15 +152,19 @@ namespace RegistrationClinik.ViewModels
                         Name = result[i].Name,
                         Adres = result[i].Adres,
                         Analiz = result[i].Analiz,
-                        Avans = result[i].Avans,
                         Birday = result[i].Birday,
+                        Bonus = result[i].Bonus,
+                        Comments = result[i].Comments,
+                        KajBro = result[i].KajBro,
+                        PalataNumber = result[i].PalataNumber,
+                        TelNumber = result[i].TelNumber,
                         Id = result[i].Id,
                         IsShow = result[i].IsShow,
                         LDoctor = result[i].LDoctor,
                         Oplacheno = result[i].Oplacheno,
                         Oplata = result[i].Oplata,
-                        Ostatok = result[i].Ostatok,
                         RegistrationDate = result[i].RegistrationDate,
+                        BackColor = result[i].IsShow == 0 ? "Blue" : "Red"
                     });
             }
         }

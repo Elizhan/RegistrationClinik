@@ -8,7 +8,7 @@ namespace RegistrationClinik.Views
     /// </summary>
     public partial class regClient : Window
     {
-        public regClient(MainWindowVIewModel model)
+        public regClient(BMainWindowViewModel model)
         {
             InitializeComponent();
             DataContext = new RegWindowViewModel(model);
