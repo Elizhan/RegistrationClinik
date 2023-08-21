@@ -9,8 +9,8 @@ namespace RegistrationClinik.ViewModels
 {
     public class RegWindowViewModel : BaseViewModel
     {
-        private MainWindowVIewModel model;
-        public RegWindowViewModel(MainWindowVIewModel _model)
+        private BMainWindowViewModel model;
+        public RegWindowViewModel(BMainWindowViewModel _model)
         {
             model = _model;
             CreateCommand = new LambdaCommand(CreateCommandExcecute, CanCreateCommandExcecuted);
@@ -23,13 +23,16 @@ namespace RegistrationClinik.ViewModels
                     Name = model.SelectedClient.Name,
                     Adres = model.SelectedClient.Adres,
                     Analiz = model.SelectedClient.Analiz,
-                    Avans = model.SelectedClient.Avans,
+                    KajBro = model.SelectedClient.KajBro,
                     Birday = model.SelectedClient.Birday,
                     IsShow = model.SelectedClient.IsShow,
                     LDoctor = model.SelectedClient.LDoctor,
                     Oplacheno = model.SelectedClient.Oplacheno,
                     Oplata = model.SelectedClient.Oplata,
-                    Ostatok = model.SelectedClient.Ostatok,
+                    PalataNumber = model.SelectedClient.PalataNumber,
+                    Bonus = model.SelectedClient.Bonus,
+                    Comments = model.SelectedClient.Comments,
+                    TelNumber = model.SelectedClient.TelNumber,
                     RegistrationDate = model.SelectedClient.RegistrationDate
                 };
             }

@@ -63,7 +63,7 @@
             <!--<TextBox  Grid.Column="4" Grid.Row="0" Style="{DynamicResource textbox}"/>-->
             <TextBox Grid.Column="4" Grid.Row="1" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10">
                 <TextBox.Text>
-                    <Binding Path="{x:Null}">  <!--Path="Item.Bonus"-->
+                    <Binding Path="Item.Bonus">  <!--Path="Item.Bonus"-->
                         <Binding.ValidationRules>
                             <ExceptionValidationRule />
                         </Binding.ValidationRules>
@@ -72,7 +72,7 @@
             </TextBox>
             <TextBox Grid.Column="4" Grid.Row="2" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10">
                 <TextBox.Text>
-                    <Binding Path="{x:Null}">   <!--Path="Item.kazh/Bro"-->
+                    <Binding Path="Item.KajBro">   <!--Path="Item.kazh/Bro"-->
                         <Binding.ValidationRules>
                             <ExceptionValidationRule />
                         </Binding.ValidationRules>
@@ -81,7 +81,7 @@
             </TextBox>
             <TextBox Grid.Column="4" Grid.Row="3" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10">
                 <TextBox.Text>
-                    <Binding Path="Item.Ostatok">
+                    <Binding Path="Item.Oplacheno">
                         <Binding.ValidationRules>
                             <ExceptionValidationRule />
                         </Binding.ValidationRules>
@@ -99,16 +99,16 @@
             </TextBox>
             <TextBlock Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" 
                    Text="Телефон" Style="{DynamicResource MaterialDesignSubtitle2TextBlock}"/>
-            <TextBox Text="{Binding Item.LDoctor, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+            <TextBox Text="{Binding Item.TelNumber, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                      mt:HintAssist.Hint="Номер телефон" Grid.Column="2" Grid.Row="5" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10"/>
             
             <TextBlock Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" 
                    Text="№ палаты" Style="{DynamicResource MaterialDesignSubtitle2TextBlock}"/>
-            <TextBox Text="{Binding Item.LDoctor, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+            <TextBox Text="{Binding Item.PalataNumber, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                      mt:HintAssist.Hint="№ палаты" Grid.Column="2" Grid.Row="6" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10"/>
             <TextBlock Grid.Column="3" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center"
                    Text="Прочее" Style="{DynamicResource MaterialDesignSubtitle2TextBlock}"/>
-            <TextBox Text="{Binding Item.LDoctor, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+            <TextBox Text="{Binding Item.Comments, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                      mt:HintAssist.Hint="Ф.И.О. врача" Grid.Column="4" Grid.Row="5" Grid.RowSpan="2" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10"/>
 
             <Button Grid.Column="1" Grid.Row="8" Background="Red"

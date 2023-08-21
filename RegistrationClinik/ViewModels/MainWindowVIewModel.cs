@@ -1,7 +1,6 @@
 ﻿using RegistrationClinik.Infras;
 using RegistrationClinik.Models;
 using RegistrationClinik.Views;
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -15,7 +14,6 @@ namespace RegistrationClinik.ViewModels
             GetAllDate();
             ArchiveCommand = new LambdaCommand(ArchiveCommandExcecute, CanArchiveCommandExcecuted);
             ShowArchiveWindowCommand = new LambdaCommand(ShowArchiveWindowCommandExcecute, CanShowArchiveWindowCommandExcecuted);
-            EditCommand = new LambdaCommand(EditCommandExcecute, CanEditCommandExcecuted);
         }
         #region Props
 
@@ -95,16 +93,6 @@ namespace RegistrationClinik.ViewModels
         {
             return true;
         }
-
-        private void EditCommandExcecute(object obj)
-        {
-            if ((string)obj == "1")
-                IsChange = false;
-            else
-                IsChange = true;
-            new regClient(this).Show();
-        }
-
         private bool CanShowArchiveWindowCommandExcecuted(object arg)
         {
             return true;
@@ -127,14 +115,11 @@ namespace RegistrationClinik.ViewModels
                         Name = result[i].Name,
                         Adres = result[i].Adres,
                         Analiz = result[i].Analiz,
-                        Avans = result[i].Avans,
                         Birday = result[i].Birday,
                         Id = result[i].Id,
-                        IsShow = result[i].IsShow,
                         LDoctor = result[i].LDoctor,
                         Oplacheno = result[i].Oplacheno,
                         Oplata = result[i].Oplata,
-                        Ostatok = result[i].Ostatok,
                         RegistrationDate = result[i].RegistrationDate,
                     });
             }

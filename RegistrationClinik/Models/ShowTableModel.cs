@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RegistrationClinik.Models
 {
@@ -14,12 +10,16 @@ namespace RegistrationClinik.Models
         public string? Adres { get; set; }
         public string? Analiz { get; set; }
         public string? LDoctor { get; set; }
+        public string? TelNumber { get; set; }
+        public string? PalataNumber { get; set; }
         public DateTime? RegistrationDate { get; set; } = DateTime.UtcNow.Date;
-        public decimal? Avans { get; set; } = 0;
-        public decimal? Ostatok { get; set; } = 0;
+        public decimal? Bonus { get; set; } = 0;
+        public decimal? KajBro { get; set; } = 0;
         public decimal? Oplacheno { get; set; } = 0;
         public decimal? Oplata { get; set; } = 0;
-        public int IsShow { get; set; } = 1;
+        public string? Comments { get; set; }
+        public int IsShow { get; set; } = 0;
         public int? Number { get; set; }
+        public string? BackColor { get; set; } = "Blue";
     }
 }
