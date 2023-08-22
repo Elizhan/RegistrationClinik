@@ -20,6 +20,7 @@ namespace RegistrationClinik
         }
         private void Close(object sender, RoutedEventArgs e)
         {
+            new MainWindowB().Show();
             this.Close();
         }
 

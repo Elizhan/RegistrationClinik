@@ -46,6 +46,7 @@
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
                 <Button Background="Green" Grid.Column="1" Content="Регистрация" Margin="10" Command="{Binding EditCommand}" CommandParameter="1"/>
+                <Button Click="WhiteWindowClick" Grid.Column="0" Content="На белое окно" Margin="10"/>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="1" Margin="10">
                 <Grid.ColumnDefinitions>
@@ -62,10 +63,11 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="0.1*" />
             </Grid.RowDefinitions>
-            <DataGrid ItemsSource="{Binding ClientCollection,UpdateSourceTrigger=PropertyChanged}" CanUserAddRows="False" 
+            <DataGrid x:Name="datagrid1" 
+                ItemsSource="{Binding ClientCollection,UpdateSourceTrigger=PropertyChanged}" CanUserAddRows="False" 
                       SelectedItem="{Binding SelectedClient,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" CellStyle="{DynamicResource DataGridCell}"
                       HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" AlternatingRowBackground="White"
-                      AutoGenerateColumns="False" FontSize="16" Margin="10,0,10,89" BorderThickness="0" IsReadOnly="True" Grid.RowSpan="2">
+                      AutoGenerateColumns="False" FontSize="16" BorderThickness="0" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="№" Width="0.17*" Binding="{Binding Number}"/>
                     <DataGridTextColumn Header="Ф.И.О." Width="0.8*" Binding="{Binding Name}"/>
@@ -113,7 +115,7 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <Button Height="40" Width="220" FontSize="18" Grid.Row="1" HorizontalAlignment="Left" Content="Сохранить в Excel" Margin="20 0"/>
+            <Button Height="40" Width="220" FontSize="18" Grid.Row="1" HorizontalAlignment="Left" Content="Сохранить в Excel" Margin="20 0" Click="SaveToExcel"/>
             <Button Height="40" Width="220" FontSize="18" Background="Green" Grid.Row="1" HorizontalAlignment="Right" Content="Посмотреть архив" Command="{Binding ShowArchiveWindowCommand}" Margin="20 0"/>
             
         </Grid>
