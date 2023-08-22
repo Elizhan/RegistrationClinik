@@ -109,7 +109,7 @@
             <TextBlock Grid.Column="3" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center"
                    Text="Прочее" Style="{DynamicResource MaterialDesignSubtitle2TextBlock}"/>
             <TextBox Text="{Binding Item.Comments, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
-                     mt:HintAssist.Hint="Ф.И.О. врача" Grid.Column="4" Grid.Row="5" Grid.RowSpan="2" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10"/>
+                     mt:HintAssist.Hint="Прочее" Grid.Column="4" Grid.Row="5" Grid.RowSpan="2" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10"/>
 
             <Button Grid.Column="1" Grid.Row="8" Background="Red"
                 Content="Отмена" Margin="20" Click="Close"/>
