@@ -19,7 +19,6 @@ namespace RegistrationClinik.ViewModels
             EditCommand = new LambdaCommand(EditCommandExcecute, CanEditCommandExcecuted);
             ShowArchiveWindowCommand = new LambdaCommand(ShowArchiveWindowCommandExcecute, CanShowArchiveWindowCommandExcecuted);
             GetWhiteCommand = new LambdaCommand(GetWhiteCommandExcecute, CanGetWhiteCommandExcecuted);
-            
         }
 
       

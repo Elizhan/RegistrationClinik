@@ -69,17 +69,17 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="№" Width="0.17*" Binding="{Binding Number}"/>
                     <DataGridTextColumn Header="Ф.И.О." Width="0.8*" Binding="{Binding Name}"/>
-                    <DataGridTextColumn Header="№ Пал" Width="0.3*" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="№ Пал" Width="0.3*" Binding="{Binding PalataNumber}"/>
                     <DataGridTextColumn Header="Год рождения" Width="0.4*" Binding="{Binding Birday,StringFormat=dd.MM.yyyy}"/>
                     <DataGridTextColumn Header="Адресс" Width="0.5*" Binding="{Binding Adres}"/>
-                    <DataGridTextColumn Header="Телефон" Width="0.5*" Binding="{Binding Adres}"/>
-                    <DataGridTextColumn Header="Каж/бро" Width="0.3*" Binding="{Binding Adres}"/>
+                    <DataGridTextColumn Header="Телефон" Width="0.5*" Binding="{Binding TelNumber}"/>
+                    <DataGridTextColumn Header="Каж/бро" Width="0.3*" Binding="{Binding KajBro}"/>
                     <DataGridTextColumn Header="Оплата" Width="0.34*"  Binding="{Binding Oplata}" />
                     <DataGridTextColumn Header="Остаток" Width="0.3*"  Binding="{Binding Ostatok}"/>
                     <DataGridTextColumn Header="Лечащий врач" Width="0.6*" Binding="{Binding LDoctor}"/>
-                    <DataGridTextColumn Header="Бонус" Width="0.3*" Binding="{Binding LDoctor}"/>
+                    <DataGridTextColumn Header="Бонус" Width="0.3*" Binding="{Binding Bonus}"/>
                     <DataGridTextColumn Header="Анализ" Width="0.3*" Binding="{Binding Analiz}"/>
-                    <DataGridTextColumn Header="Прочее" Width="0.3*" Binding="{Binding Analiz}"/>
+                    <DataGridTextColumn Header="Прочее" Width="0.3*" Binding="{Binding Comments}"/>
                     <!--<DataGridTextColumn Header="Дата регистрации" Width="0.4*" Binding="{Binding RegistrationDate, StringFormat=dd.MM.yyyy HH:mm}"/>
                     <DataGridTextColumn Header="Аванс" Width="0.25*"  Binding="{Binding Avans}"/>
                     <DataGridTextColumn Header="Оплачено" Width="0.29*"  Binding="{Binding Oplacheno}"/>-->

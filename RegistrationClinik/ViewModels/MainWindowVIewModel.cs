@@ -3,6 +3,7 @@ using RegistrationClinik.Models;
 using RegistrationClinik.Views;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 
 namespace RegistrationClinik.ViewModels
@@ -64,19 +65,13 @@ namespace RegistrationClinik.ViewModels
         {
             using (ApplicationConnect db = new ApplicationConnect())
             {
-                db.DBArchives.Add(new DBArchive
+                var result = db.DBTables.FirstOrDefault(s => s.Id == selectedClient.Id);
+                if (result != null)
                 {
-                    IsShow = 1,
-                    Adres = SelectedClient.Adres,
-                    Name = SelectedClient.Name,
-                    Birday = SelectedClient.Birday,
-                    Analiz = SelectedClient.Analiz,
-                    LDoctor = SelectedClient.LDoctor,
-                    Oplata = SelectedClient.Oplata,
-                    RegistrationDate = SelectedClient.RegistrationDate,
-                });
-                db.Remove(db.DBTables.FirstOrDefault(s => s.Id == SelectedClient.Id));
+                    result.IsShow = 0;
+                }
                 db.SaveChanges();
+                MessageBox.Show("Успешно!");
                 GetAllDate();
             }
         }
