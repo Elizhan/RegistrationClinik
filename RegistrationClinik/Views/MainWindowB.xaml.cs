@@ -1,28 +1,24 @@
-﻿using ClosedXML.Excel;
-using DocumentFormat.OpenXml.Spreadsheet;
+﻿using Microsoft.Office.Interop.Excel;
 using RegistrationClinik.ViewModels;
-using RegistrationClinik.Views;
-using System.Collections.Generic;
 using System;
-using System.Data;
-using System.Linq;
-using System.Reflection;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using Key = System.Windows.Input.Key;
-using Microsoft.Office.Interop.Excel;
-using System.IO;
-using System.Data.OleDb;
 
 namespace RegistrationClinik.Views
 {
     /// <summary>
     /// Логика взаимодействия для MainWindowB.xaml
     /// </summary>
-    public partial class MainWindowB : Window
+    public partial class MainWindowB
     {
+        Microsoft.Office.Interop.Excel.Application excel;
+        Microsoft.Office.Interop.Excel.Workbook workBook;
+        Microsoft.Office.Interop.Excel.Worksheet workSheet;
+        Microsoft.Office.Interop.Excel.Range cellRange;
+
         public BMainWindowViewModel model;
+
         public MainWindowB()
         {
             InitializeComponent();
@@ -53,64 +49,53 @@ namespace RegistrationClinik.Views
 
         private void SaveToExcel(object sender, RoutedEventArgs e)
         {
-            var d = UsersDataGrid.ItemsSource.Cast<User>();
-            var data = ToDataTable(d.ToList());
-            ToExcelFile(data, "test.xlsx");
+            GenerateExcel1();
+            convertExcel();
         }
-        public static DataTable ToDataTable<T>(List<T> items)
+
+        private void convertExcel()
         {
-            var dataTable = new DataTable(typeof(T).Name);
-
-            //Get all the properties
-            var properties = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
-            foreach (var prop in properties)
-            {
-                //Defining type of data column gives proper data table 
-                var type = (prop.PropertyType.IsGenericType && prop.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>) ? Nullable.GetUnderlyingType(prop.PropertyType) : prop.PropertyType);
-                //Setting column names as Property names
-                dataTable.Columns.Add(prop.Name, type);
-            }
-            foreach (var item in items)
-            {
-                var values = new object[properties.Length];
-                for (var i = 0; i < properties.Length; i++)
-                {
-                    //inserting property values to data table rows
-                    values[i] = properties[i].GetValue(item, null);
-                }
-                dataTable.Rows.Add(values);
-            }
-            //put a breakpoint here and check data table
-            return dataTable;
+            workBook.SaveAs(System.IO.Path.Combine(@"Drive:\Folder(s)\", "Excel book Name"));
+            workBook.Close();
+            excel.Quit();
         }
-        public static void ToExcelFile(DataTable dataTable, string filePath, bool overwriteFile = true)
+
+        private void GenerateExcel1()
         {
-            if (File.Exists(filePath) && overwriteFile)
-                File.Delete(filePath);
-
-            using (var connection = new OLEDBConnection())
+            //try
+            //{
+            MessageBox.Show("sadads");
+            excel = new Microsoft.Office.Interop.Excel.Application();
+            excel.DisplayAlerts = false;
+            excel.Visible = false;
+            workBook = excel.Workbooks.Add(Type.Missing);
+            workSheet = (Microsoft.Office.Interop.Excel.Worksheet)workBook.ActiveSheet;
+            workSheet.Name = "LearningExcel";
+            //System.Data.DataTable tempDt = (System.Data.DataTable)DtIN;
+            //datagrid1.ItemsSource = tempDt.DefaultView;
+            workSheet.Cells.Font.Size = 11;
+            int rowcount = 1;
+            for (int i = 1; i <= datagrid1.Columns.Count; i++) //taking care of Headers.  
             {
-                connection.ConnectionString = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={filePath};" +
-                                              "Extended Properties='Excel 12.0 Xml;HDR=YES;'";
-                connection.Open();
-                using (var command = new OleDbCommand())
-                {
-                    command.Connection = connection;
-                    var columnNames = (from DataColumn dataColumn in dataTable.Columns select dataColumn.ColumnName).ToList();
-                    var tableName = !string.IsNullOrWhiteSpace(dataTable.TableName) ? dataTable.TableName : Guid.NewGuid().ToString();
-                    command.CommandText = $"CREATE TABLE [{tableName}] ({string.Join(",", columnNames.Select(c => $"[{c}] VARCHAR").ToArray())});";
-                    command.ExecuteNonQuery();
-                    foreach (DataRow row in dataTable.Rows)
-                    {
-                        var rowValues = (from DataColumn column in dataTable.Columns select (row[column] != null && row[column] != DBNull.Value) ? row[column].ToString() : string.Empty).ToList();
-                        command.CommandText = $"INSERT INTO [{tableName}]({string.Join(",", columnNames.Select(c => $"[{c}]"))}) VALUES ({string.Join(",", rowValues.Select(r => $"'{r}'").ToArray())});";
-                        command.ExecuteNonQuery();
-                    }
-                }
-
-                connection.Close();
+                workSheet.Cells[1, i] = datagrid1.Columns[i - 1].Header;
             }
+            foreach (System.Data.DataRow row in datagrid1.Items) //taking care of each Row  
+            {
+                rowcount += 1;
+                for (int i = 0; i < datagrid1.Columns.Count; i++) //taking care of each column  
+                {
+                    workSheet.Cells[rowcount, i + 1] = row[i].ToString();
+                }
+            }
+            cellRange = workSheet.Range[workSheet.Cells[1, 1], workSheet.Cells[rowcount, datagrid1.Columns.Count]];
+            cellRange.EntireColumn.AutoFit();
+            //}
+            //catch (Exception)
+            //{
+            //    throw;
+            //}
         }
+
         private void WhiteWindowClick(object sender, RoutedEventArgs e)
         {
             new MainWindow().Show();
