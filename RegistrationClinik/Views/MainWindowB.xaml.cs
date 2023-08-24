@@ -20,10 +20,6 @@ namespace RegistrationClinik.Views
     /// </summary>
     public partial class MainWindowB : System.Windows.Window
     {
-        Microsoft.Office.Interop.Excel.Application excel;
-        Microsoft.Office.Interop.Excel.Workbook workBook;
-        Microsoft.Office.Interop.Excel.Worksheet workSheet;
-        Microsoft.Office.Interop.Excel.Range cellRange;
 
         public BMainWindowViewModel model;
 

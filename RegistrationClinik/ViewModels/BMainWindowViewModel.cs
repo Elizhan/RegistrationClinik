@@ -4,19 +4,13 @@ using RegistrationClinik.Infras;
 using RegistrationClinik.Models;
 using RegistrationClinik.Views;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Data;
 using System.Linq;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using Excel = Microsoft.Office.Interop.Excel;
-using NsExcel = Microsoft.Office.Interop.Excel;
 
 namespace RegistrationClinik.ViewModels
 {
@@ -195,73 +189,66 @@ namespace RegistrationClinik.ViewModels
         {
             try
             {
-            Excel.Application app = new();
-            Excel.Workbook workbook = app.Workbooks.Add(System.Reflection.Missing.Value);
-            Excel.Worksheet ws = (Excel.Worksheet)workbook.Worksheets.get_Item(1);
+                Excel.Application app = new();
+                Excel.Workbook workbook = app.Workbooks.Add(System.Reflection.Missing.Value);
+                Excel.Worksheet ws = (Excel.Worksheet)workbook.Worksheets.get_Item(1);
 
-            ws.Cells[1, 1] = "Name";
-            ws.Cells[1, 2] = "Name";
-            ws.Cells[1, 3] = "Name";
-            ws.Cells[1, 4] = "Name";
-            ws.Cells[1, 5] = "Name";
-            ws.Cells[1, 6] = "Name";
-            ws.Cells[1, 7] = "Name";
-            ws.Cells[1, 8] = "Name";
-            ws.Cells[1, 9] = "Name";
-            ws.Cells[1, 10] = "Name";
-            ws.Cells[1, 11] = "Name";
-            ws.Cells[1, 12] = "Name";
-            ws.Cells[1, 13] = "Name";
+                ws.Cells[1, 1] = "№";
+                ws.Cells[1, 2] = "Имя";
+                ws.Cells[1, 3] = "Номер палаты";
+                ws.Cells[1, 4] = "День рождение";
+                ws.Cells[1, 5] = "Адрес";
+                ws.Cells[1, 6] = "Номер телефона";
+                ws.Cells[1, 7] = "Каж/бро";
+                ws.Cells[1, 8] = "Остаток";
+                ws.Cells[1, 9] = "Оплачено";
+                ws.Cells[1, 10] = "Доктор";
+                ws.Cells[1, 11] = "Бонус";
+                ws.Cells[1, 12] = "Анализ";
+                ws.Cells[1, 13] = "Дополнительно";
 
-            for (int i = 0; i < ClientCollection.Count; i++)
-            {
-                ws.Cells[i + 2, 1] = clientCollection[i].Number;
-                ws.Cells[i + 2, 2] = clientCollection[i].Name;
-                ws.Cells[i + 2, 3] = clientCollection[i].PalataNumber;
-                ws.Cells[i + 2, 4] = clientCollection[i].Birday;
-                ws.Cells[i + 2, 5] = clientCollection[i].Adres;
-                ws.Cells[i + 2, 6] = clientCollection[i].TelNumber;
-                ws.Cells[i + 2, 7] = clientCollection[i].KajBro;
-                ws.Cells[i + 2, 8] = clientCollection[i].Ostatok;
-                ws.Cells[i + 2, 9] = clientCollection[i].Oplata;
-                ws.Cells[i + 2, 10] = clientCollection[i].LDoctor;
-                ws.Cells[i + 2, 11] = clientCollection[i].Bonus;
-                ws.Cells[i + 2, 12] = clientCollection[i].Analiz;
-                ws.Cells[i + 2, 13] = clientCollection[i].Comments;
-            }
-            workbook.SaveAs(@"C:\do.xlsx", System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value,XlSaveAsAccessMode.xlExclusive, System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value);
-            MessageBox.Show("Экспортировано успешно!");
-            workbook.Close(System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value);
-            app.Quit();
+                for (int i = 0; i < ClientCollection.Count; i++)
+                {
+                    ws.Cells[i + 2, 1] = clientCollection[i].Number;
+                    ws.Cells[i + 2, 2] = clientCollection[i].Name;
+                    ws.Cells[i + 2, 3] = clientCollection[i].PalataNumber;
+                    ws.Cells[i + 2, 4] = clientCollection[i].Birday.Value.ToShortDateString();
+                    ws.Cells[i + 2, 5] = clientCollection[i].Adres;
+                    ws.Cells[i + 2, 6] = clientCollection[i].TelNumber;
+                    ws.Cells[i + 2, 7] = clientCollection[i].KajBro;
+                    ws.Cells[i + 2, 8] = clientCollection[i].Ostatok;
+                    ws.Cells[i + 2, 9] = clientCollection[i].Oplata;
+                    ws.Cells[i + 2, 10] = clientCollection[i].LDoctor;
+                    ws.Cells[i + 2, 11] = clientCollection[i].Bonus;
+                    ws.Cells[i + 2, 12] = clientCollection[i].Analiz;
+                    ws.Cells[i + 2, 13] = clientCollection[i].Comments;
+                }
 
-            GC.WaitForPendingFinalizers();
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-            GC.Collect();
+                SaveFileDialog openFile = new SaveFileDialog();
+                if (openFile.ShowDialog() == true)
+                {
+                    workbook.SaveAs(openFile.FileName);
+                    MessageBox.Show("Экспортировано успешно!");
+                    workbook.Close(System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value);
+                    app.Quit();
 
-            Marshal.ReleaseComObject(ws);
-            Marshal.ReleaseComObject(workbook);
-            Marshal.ReleaseComObject(app);
+                    GC.WaitForPendingFinalizers();
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+                    GC.Collect();
 
-
+                    Marshal.ReleaseComObject(ws);
+                    Marshal.ReleaseComObject(workbook);
+                    Marshal.ReleaseComObject(app);
+                }
+                else
+                {
+                    MessageBox.Show("Произошла ошибка!");
+                }
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
-        private void OpenFile()
-        {
-            try
-            {
-                var excel = new Excel.Application();
-                excel.Visible = true;
-                Workbooks books = excel.Workbooks;
-                Excel.Workbook book = books.Open(@"C:\do.xlxs");
-
-            }
-            catch
-            {
-
-            }
-        }
+        
         //private void SaveToExcelCommandExcecuted(object obj)
         //{
         //    Microsoft.Office.Interop.Excel.Application excel;
