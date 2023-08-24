@@ -18,7 +18,7 @@ namespace RegistrationClinik.Views
     /// <summary>
     /// Логика взаимодействия для MainWindowB.xaml
     /// </summary>
-    public partial class MainWindowB : Window
+    public partial class MainWindowB : System.Windows.Window
     {
         Microsoft.Office.Interop.Excel.Application excel;
         Microsoft.Office.Interop.Excel.Workbook workBook;
