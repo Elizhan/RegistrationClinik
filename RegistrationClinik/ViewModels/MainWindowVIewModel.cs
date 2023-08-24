@@ -113,7 +113,7 @@ namespace RegistrationClinik.ViewModels
                         Birday = result[i].Birday,
                         Id = result[i].Id,
                         LDoctor = result[i].LDoctor,
-                        Oplacheno = result[i].Oplacheno,
+                        Ostatok = result[i].Ostatok,
                         Oplata = result[i].Oplata,
                         RegistrationDate = result[i].RegistrationDate,
                     });

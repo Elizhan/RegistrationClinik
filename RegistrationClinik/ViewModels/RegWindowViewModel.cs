@@ -27,7 +27,7 @@ namespace RegistrationClinik.ViewModels
                     Birday = model.SelectedClient.Birday,
                     IsShow = model.SelectedClient.IsShow,
                     LDoctor = model.SelectedClient.LDoctor,
-                    Oplacheno = model.SelectedClient.Oplacheno,
+                    Ostatok = model.SelectedClient.Ostatok,
                     Oplata = model.SelectedClient.Oplata,
                     PalataNumber = model.SelectedClient.PalataNumber,
                     Bonus = model.SelectedClient.Bonus,

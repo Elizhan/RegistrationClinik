@@ -1,12 +1,22 @@
-﻿using RegistrationClinik.Infras;
+﻿using Microsoft.Office.Interop.Excel;
+using Microsoft.Win32;
+using RegistrationClinik.Infras;
 using RegistrationClinik.Models;
 using RegistrationClinik.Views;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Data;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using Excel = Microsoft.Office.Interop.Excel;
+using NsExcel = Microsoft.Office.Interop.Excel;
 
 namespace RegistrationClinik.ViewModels
 {
@@ -19,9 +29,15 @@ namespace RegistrationClinik.ViewModels
             EditCommand = new LambdaCommand(EditCommandExcecute, CanEditCommandExcecuted);
             ShowArchiveWindowCommand = new LambdaCommand(ShowArchiveWindowCommandExcecute, CanShowArchiveWindowCommandExcecuted);
             GetWhiteCommand = new LambdaCommand(GetWhiteCommandExcecute, CanGetWhiteCommandExcecuted);
+            SaveToExcelCommand = new LambdaCommand(SaveToExcelCommandExcecuted, CanSaveToExcelCommandExcecute);
         }
 
-      
+        private bool CanSaveToExcelCommandExcecute(object arg)
+        {
+            return true;
+        }
+
+
 
         #region Props
 
@@ -67,6 +83,7 @@ namespace RegistrationClinik.ViewModels
         public ICommand EditCommand { get; set; }
         public ICommand ShowArchiveWindowCommand { get; set; }
         public ICommand GetWhiteCommand { get; set; }
+        public ICommand SaveToExcelCommand { get; set; }
 
         private bool CanGetWhiteCommandExcecuted(object arg)
         {
@@ -76,7 +93,7 @@ namespace RegistrationClinik.ViewModels
         {
             using (ApplicationConnect db = new ApplicationConnect())
             {
-                var result = db.DBTables.FirstOrDefault(s=>s.Id == selectedClient.Id);
+                var result = db.DBTables.FirstOrDefault(s => s.Id == selectedClient.Id);
                 if (result != null)
                 {
                     result.IsShow = 1;
@@ -102,7 +119,7 @@ namespace RegistrationClinik.ViewModels
                     Oplata = SelectedClient.Oplata,
                     RegistrationDate = SelectedClient.RegistrationDate
                 });
-                db.Remove(db.DBTables.FirstOrDefault(s=>s.Id == SelectedClient.Id));
+                db.Remove(db.DBTables.FirstOrDefault(s => s.Id == SelectedClient.Id));
                 db.SaveChanges();
                 GetAllDate();
             }
@@ -160,7 +177,7 @@ namespace RegistrationClinik.ViewModels
                         Id = result[i].Id,
                         IsShow = result[i].IsShow,
                         LDoctor = result[i].LDoctor,
-                        Oplacheno = result[i].Oplacheno,
+                        Ostatok = result[i].Ostatok,
                         Oplata = result[i].Oplata,
                         RegistrationDate = result[i].RegistrationDate,
                         BackColor = result[i].IsShow == 0 ? "Blue" : "Red"
@@ -174,5 +191,132 @@ namespace RegistrationClinik.ViewModels
             GetAllDate();
             ClientCollection = new ObservableCollection<ShowTableModel>(ClientCollection.Where(s => s.Name.Contains(value)));
         }
+        private void SaveToExcelCommandExcecuted(object obj)
+        {
+            try
+            {
+            Excel.Application app = new();
+            Excel.Workbook workbook = app.Workbooks.Add(System.Reflection.Missing.Value);
+            Excel.Worksheet ws = (Excel.Worksheet)workbook.Worksheets.get_Item(1);
+
+            ws.Cells[1, 1] = "Name";
+            ws.Cells[1, 2] = "Name";
+            ws.Cells[1, 3] = "Name";
+            ws.Cells[1, 4] = "Name";
+            ws.Cells[1, 5] = "Name";
+            ws.Cells[1, 6] = "Name";
+            ws.Cells[1, 7] = "Name";
+            ws.Cells[1, 8] = "Name";
+            ws.Cells[1, 9] = "Name";
+            ws.Cells[1, 10] = "Name";
+            ws.Cells[1, 11] = "Name";
+            ws.Cells[1, 12] = "Name";
+            ws.Cells[1, 13] = "Name";
+
+            for (int i = 0; i < ClientCollection.Count; i++)
+            {
+                ws.Cells[i + 2, 1] = clientCollection[i].Number;
+                ws.Cells[i + 2, 2] = clientCollection[i].Name;
+                ws.Cells[i + 2, 3] = clientCollection[i].PalataNumber;
+                ws.Cells[i + 2, 4] = clientCollection[i].Birday;
+                ws.Cells[i + 2, 5] = clientCollection[i].Adres;
+                ws.Cells[i + 2, 6] = clientCollection[i].TelNumber;
+                ws.Cells[i + 2, 7] = clientCollection[i].KajBro;
+                ws.Cells[i + 2, 8] = clientCollection[i].Ostatok;
+                ws.Cells[i + 2, 9] = clientCollection[i].Oplata;
+                ws.Cells[i + 2, 10] = clientCollection[i].LDoctor;
+                ws.Cells[i + 2, 11] = clientCollection[i].Bonus;
+                ws.Cells[i + 2, 12] = clientCollection[i].Analiz;
+                ws.Cells[i + 2, 13] = clientCollection[i].Comments;
+            }
+            workbook.SaveAs(@"C:\do.xlsx", System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value,XlSaveAsAccessMode.xlExclusive, System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value);
+            MessageBox.Show("Экспортировано успешно!");
+            workbook.Close(System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value);
+            app.Quit();
+
+            GC.WaitForPendingFinalizers();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            GC.Collect();
+
+            Marshal.ReleaseComObject(ws);
+            Marshal.ReleaseComObject(workbook);
+            Marshal.ReleaseComObject(app);
+
+
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+        private void OpenFile()
+        {
+            try
+            {
+                var excel = new Excel.Application();
+                excel.Visible = true;
+                Workbooks books = excel.Workbooks;
+                Excel.Workbook book = books.Open(@"C:\do.xlxs");
+
+            }
+            catch
+            {
+
+            }
+        }
+        //private void SaveToExcelCommandExcecuted(object obj)
+        //{
+        //    Microsoft.Office.Interop.Excel.Application excel;
+        //    Microsoft.Office.Interop.Excel.Workbook excelworkBook;
+        //    Microsoft.Office.Interop.Excel.Worksheet excelSheet;
+        //    Microsoft.Office.Interop.Excel.Range excelCellrange;
+
+        //    excel = new Microsoft.Office.Interop.Excel.Application();
+
+        //    // for making Excel visible
+        //    excel.Visible = false;
+        //    excel.DisplayAlerts = false;
+
+        //    // Creation a new Workbook
+        //    excelworkBook = excel.Workbooks.Add(Type.Missing);
+
+        //    // Work sheet
+        //    excelSheet = (Microsoft.Office.Interop.Excel.Worksheet)excelworkBook.ActiveSheet;
+        //    excelSheet.Name = "Export";
+
+        //    excelSheet.Cells[1, 1] = "Export To Excel";
+        //    excelSheet.Cells[1, 2] = "Date : " + DateTime.Now.ToShortDateString();
+
+        //    excelCellrange = excelSheet.Range[excelSheet.Cells[1, 1], excelSheet.Cells[rowcount, dataTable.Columns.Count]];
+        //    excelCellrange.EntireColumn.AutoFit();
+
+        //    Microsoft.Office.Interop.Excel.Borders border = excelCellrange.Borders;
+        //    border.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+        //    border.Weight = 2d;
+        //}
+
+        //public void FormattingExcelCells(Microsoft.Office.Interop.Excel.Range range, string HTMLcolorCode, System.Drawing.Color fontColor, bool IsFontbool)
+        //{
+        //    range.Interior.Color = System.Drawing.ColorTranslator.FromHtml(HTMLcolorCode);
+        //    range.Font.Color = System.Drawing.ColorTranslator.ToOle(fontColor);
+        //    if (IsFontbool == true)
+        //    {
+        //        range.Font.Bold = IsFontbool;
+        //    }
+        //}
+
+        //public DataTable ConvertToDataTable<T>(IList<T> data)
+        //{
+        //    PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(typeof(T));
+        //    DataTable table = new DataTable();
+        //    foreach (PropertyDescriptor prop in properties)
+        //        table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
+        //    foreach (T item in data)
+        //    {
+        //        DataRow row = table.NewRow();
+        //        foreach (PropertyDescriptor prop in properties)
+        //            row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
+        //        table.Rows.Add(row);
+        //    }
+        //    return table;
+        //}
     }
 }
