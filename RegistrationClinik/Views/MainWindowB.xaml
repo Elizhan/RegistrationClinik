@@ -114,10 +114,8 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-
             <Button Height="40" Width="220" FontSize="18" Grid.Row="1" HorizontalAlignment="Left" Content="Сохранить в Excel" Margin="20 0" Command="{Binding SaveToExcelCommand}" Click="SaveToExcel"/>
             <Button Height="40" Width="220" FontSize="18" Background="Green" Grid.Row="1" HorizontalAlignment="Right" Content="Посмотреть архив" Command="{Binding ShowArchiveWindowCommand}" Margin="20 0"/>
-            
         </Grid>
     </Grid>
 </Window>
