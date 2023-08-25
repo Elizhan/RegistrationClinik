@@ -70,6 +70,7 @@ namespace RegistrationClinik.Views
         {
             try
             {
+                var col = new List<DBArchive>((IEnumerable<DBArchive>)dataGrid1.ItemsSource);
                 Excel.Application app = new();
                 Excel.Workbook workbook = app.Workbooks.Add(System.Reflection.Missing.Value);
                 Excel.Worksheet ws = (Excel.Worksheet)workbook.Worksheets.get_Item(1);
@@ -85,9 +86,9 @@ namespace RegistrationClinik.Views
                 ws.Cells[1, 9] = "Номер палаты";
                 ws.Cells[1, 10] = "Дата регистрации";
 
-                for (int i = 0; i < Collection.Count; i++)
+                for (int i = 0; i < col.Count; i++)
                 {
-                    ws.Cells[i + 2, 1] = Collection[i].Id;
+                    ws.Cells[i + 2, 1] = col[i].Id;
                     ws.Cells[i + 2, 2] = Collection[i].Name;
                     ws.Cells[i + 2, 3] = Collection[i].Birday.Value.ToShortDateString();
                     ws.Cells[i + 2, 4] = Collection[i].Adres;
