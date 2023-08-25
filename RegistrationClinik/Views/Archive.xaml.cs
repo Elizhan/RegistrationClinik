@@ -25,6 +25,7 @@ namespace RegistrationClinik.Views
             InitializeComponent();
             WindowState = WindowState.Maximized;
             isB = _isB;
+            endDate.SelectedDate = DateTime.Now;
             GetAllDate();
         }
 
@@ -50,7 +51,13 @@ namespace RegistrationClinik.Views
         {
             if (Collection is null && Collection == new List<DBArchive>())
                 return;
-            dataGrid1.ItemsSource = new List<DBArchive>(Collection.Where(s => s.RegistrationDate.Value.Date >= startDate.SelectedDate.Value.Date && s.RegistrationDate.Value.Date <= endDate.SelectedDate.Value.Date));
+            if (startDate.SelectedDate is null && endDate.SelectedDate is null)
+                dataGrid1.ItemsSource = new List<DBArchive>(Collection);
+            else if(startDate.SelectedDate is null && endDate.SelectedDate is not null)
+                dataGrid1.ItemsSource = new List<DBArchive>(Collection.Where(s=>s.RegistrationDate.Value.Date <= endDate.SelectedDate.Value.Date));
+            else if (startDate.SelectedDate is not null && endDate.SelectedDate is null)
+                dataGrid1.ItemsSource = new List<DBArchive>(Collection.Where(s => s.RegistrationDate.Value.Date >= startDate.SelectedDate.Value.Date));
+            else dataGrid1.ItemsSource = new List<DBArchive>(Collection.Where(s => s.RegistrationDate.Value.Date >= startDate.SelectedDate.Value.Date && s.RegistrationDate.Value.Date <= endDate.SelectedDate.Value.Date));
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
