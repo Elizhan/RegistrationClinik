@@ -89,15 +89,15 @@ namespace RegistrationClinik.Views
                 for (int i = 0; i < col.Count; i++)
                 {
                     ws.Cells[i + 2, 1] = col[i].Id;
-                    ws.Cells[i + 2, 2] = Collection[i].Name;
-                    ws.Cells[i + 2, 3] = Collection[i].Birday.Value.ToShortDateString();
-                    ws.Cells[i + 2, 4] = Collection[i].Adres;
-                    ws.Cells[i + 2, 5] = Collection[i].TelNumber;
-                    ws.Cells[i + 2, 6] = Collection[i].Oplata;
-                    ws.Cells[i + 2, 7] = Collection[i].LDoctor;
-                    ws.Cells[i + 2, 8] = Collection[i].Analiz;
-                    ws.Cells[i + 2, 9] = Collection[i].PalataNumber;
-                    ws.Cells[i + 2, 10] = Collection[i].RegistrationDate;
+                    ws.Cells[i + 2, 2] = col[i].Name;
+                    ws.Cells[i + 2, 3] = col[i].Birday.Value.ToShortDateString();
+                    ws.Cells[i + 2, 4] = col[i].Adres;
+                    ws.Cells[i + 2, 5] = col[i].TelNumber;
+                    ws.Cells[i + 2, 6] = col[i].Oplata;
+                    ws.Cells[i + 2, 7] = col[i].LDoctor;
+                    ws.Cells[i + 2, 8] = col[i].Analiz;
+                    ws.Cells[i + 2, 9] = col[i].PalataNumber;
+                    ws.Cells[i + 2, 10] = col[i].RegistrationDate.Value.ToShortDateString();
                 }
 
                 SaveFileDialog openFile = new SaveFileDialog();
