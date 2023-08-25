@@ -111,7 +111,9 @@ namespace RegistrationClinik.ViewModels
                     Analiz = SelectedClient.Analiz,
                     LDoctor = SelectedClient.LDoctor,
                     Oplata = SelectedClient.Oplata,
-                    RegistrationDate = SelectedClient.RegistrationDate
+                    RegistrationDate = SelectedClient.RegistrationDate,
+                    TelNumber = SelectedClient.TelNumber,   
+
                 });
                 db.Remove(db.DBTables.FirstOrDefault(s => s.Id == SelectedClient.Id));
                 db.SaveChanges();
@@ -201,7 +203,7 @@ namespace RegistrationClinik.ViewModels
                 ws.Cells[1, 6] = "Номер телефона";
                 ws.Cells[1, 7] = "Каж/бро";
                 ws.Cells[1, 8] = "Остаток";
-                ws.Cells[1, 9] = "Оплачено";
+                ws.Cells[1, 9] = "Оплата";
                 ws.Cells[1, 10] = "Доктор";
                 ws.Cells[1, 11] = "Бонус";
                 ws.Cells[1, 12] = "Анализ";
@@ -248,62 +250,5 @@ namespace RegistrationClinik.ViewModels
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
-        
-        //private void SaveToExcelCommandExcecuted(object obj)
-        //{
-        //    Microsoft.Office.Interop.Excel.Application excel;
-        //    Microsoft.Office.Interop.Excel.Workbook excelworkBook;
-        //    Microsoft.Office.Interop.Excel.Worksheet excelSheet;
-        //    Microsoft.Office.Interop.Excel.Range excelCellrange;
-
-        //    excel = new Microsoft.Office.Interop.Excel.Application();
-
-        //    // for making Excel visible
-        //    excel.Visible = false;
-        //    excel.DisplayAlerts = false;
-
-        //    // Creation a new Workbook
-        //    excelworkBook = excel.Workbooks.Add(Type.Missing);
-
-        //    // Work sheet
-        //    excelSheet = (Microsoft.Office.Interop.Excel.Worksheet)excelworkBook.ActiveSheet;
-        //    excelSheet.Name = "Export";
-
-        //    excelSheet.Cells[1, 1] = "Export To Excel";
-        //    excelSheet.Cells[1, 2] = "Date : " + DateTime.Now.ToShortDateString();
-
-        //    excelCellrange = excelSheet.Range[excelSheet.Cells[1, 1], excelSheet.Cells[rowcount, dataTable.Columns.Count]];
-        //    excelCellrange.EntireColumn.AutoFit();
-
-        //    Microsoft.Office.Interop.Excel.Borders border = excelCellrange.Borders;
-        //    border.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-        //    border.Weight = 2d;
-        //}
-
-        //public void FormattingExcelCells(Microsoft.Office.Interop.Excel.Range range, string HTMLcolorCode, System.Drawing.Color fontColor, bool IsFontbool)
-        //{
-        //    range.Interior.Color = System.Drawing.ColorTranslator.FromHtml(HTMLcolorCode);
-        //    range.Font.Color = System.Drawing.ColorTranslator.ToOle(fontColor);
-        //    if (IsFontbool == true)
-        //    {
-        //        range.Font.Bold = IsFontbool;
-        //    }
-        //}
-
-        //public DataTable ConvertToDataTable<T>(IList<T> data)
-        //{
-        //    PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(typeof(T));
-        //    DataTable table = new DataTable();
-        //    foreach (PropertyDescriptor prop in properties)
-        //        table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
-        //    foreach (T item in data)
-        //    {
-        //        DataRow row = table.NewRow();
-        //        foreach (PropertyDescriptor prop in properties)
-        //            row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
-        //        table.Rows.Add(row);
-        //    }
-        //    return table;
-        //}
     }
 }

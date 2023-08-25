@@ -60,7 +60,7 @@
                     <DataGridTextColumn Header="Ф.И.О." Width="*" Binding="{Binding Name}"/>
                     <DataGridTextColumn Header="Дата рождения" Width="0.4*" Binding="{Binding Birday,StringFormat=dd.MM.yyyy}"/>
                     <DataGridTextColumn Header="Адресс" Width="0.5*" Binding="{Binding Adres}"/>
-                    <DataGridTextColumn Header="Оплачено" Width="0.25*"  Binding="{Binding Oplacheno}"/>
+                    <DataGridTextColumn Header="Оплачено" Width="0.25*"  Binding="{Binding Ostatok}"/>
                     <DataGridTextColumn Header="Оплата" Width="0.34*"  Binding="{Binding Oplata}"/>
                     <DataGridTextColumn Header="Анализ" Width="0.3*" Binding="{Binding Analiz}"/>
                     <DataGridTextColumn Header="Лечащий врач" Width="0.6*" Binding="{Binding LDoctor}"/>
@@ -74,8 +74,8 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            
-            <Button Height="40" Width="220" FontSize="18" Grid.Row="1" HorizontalAlignment="Left" Content="Сохранить в Excel" Margin="20 0"/>
+
+            <Button Height="40" Width="220" FontSize="18" Grid.Row="1" HorizontalAlignment="Left" Content="Сохранить в Excel" Margin="20 0" Command="{Binding SaveToExcelCommand}"/>
             <Button Height="40" Width="220" FontSize="18" Background="Green" Command="{Binding ShowArchiveWindowCommand}" Grid.Row="1" HorizontalAlignment="Right" Content="Посмотреть архив" Margin="20 0"/>
         </Grid>
     </Grid>

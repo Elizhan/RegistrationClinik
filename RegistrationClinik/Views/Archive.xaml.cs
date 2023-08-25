@@ -1,21 +1,26 @@
-﻿using RegistrationClinik.Infras;
+﻿using Microsoft.Win32;
+using RegistrationClinik.Infras;
 using RegistrationClinik.Models;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace RegistrationClinik.Views
 {
     /// <summary>
     /// Логика взаимодействия для Archive.xaml
     /// </summary>
-    public partial class Archive : Window
+    public partial class Archive : System.Windows.Window
     {
-        private bool isB = false;
+        private bool isB = true;
 
         private List<DBArchive> Collection = new List<DBArchive>();
 
-        public Archive(bool _isB = false)
+        public Archive(bool _isB = true)
         {
             InitializeComponent();
             WindowState = WindowState.Maximized;
@@ -32,12 +37,11 @@ namespace RegistrationClinik.Views
             using ApplicationConnect db = new();
             if (isB)
             {
-
                 Collection = db.DBArchives.ToList();
             }
-            else 
+            else
             {
-                Collection = db.DBArchives.Where(s=>s.IsShow == 1).ToList();
+                Collection = db.DBArchives.Where(s => s.IsShow == 1).ToList();
             }
             dataGrid1.ItemsSource = new List<DBArchive>(Collection);
         }
@@ -46,7 +50,7 @@ namespace RegistrationClinik.Views
         {
             if (Collection is null && Collection == new List<DBArchive>())
                 return;
-            dataGrid1.ItemsSource = new List<DBArchive>(Collection.Where(s=>s.RegistrationDate.Value.Date >= startDate.SelectedDate.Value.Date && s.RegistrationDate.Value.Date <= endDate.SelectedDate.Value.Date));
+            dataGrid1.ItemsSource = new List<DBArchive>(Collection.Where(s => s.RegistrationDate.Value.Date >= startDate.SelectedDate.Value.Date && s.RegistrationDate.Value.Date <= endDate.SelectedDate.Value.Date));
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -59,7 +63,65 @@ namespace RegistrationClinik.Views
             if (string.IsNullOrEmpty(textBox1.Text))
                 dataGrid1.ItemsSource = new List<DBArchive>(Collection);
 
-            dataGrid1.ItemsSource = new List<DBArchive>(Collection.Where(s=>s.Name.Contains(textBox1.Text)));
+            dataGrid1.ItemsSource = new List<DBArchive>(Collection.Where(s => s.Name.Contains(textBox1.Text)));
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Excel.Application app = new();
+                Excel.Workbook workbook = app.Workbooks.Add(System.Reflection.Missing.Value);
+                Excel.Worksheet ws = (Excel.Worksheet)workbook.Worksheets.get_Item(1);
+
+                ws.Cells[1, 1] = "№";
+                ws.Cells[1, 2] = "Имя";
+                ws.Cells[1, 3] = "День рождение";
+                ws.Cells[1, 4] = "Адрес";
+                ws.Cells[1, 5] = "Номер телефона";
+                ws.Cells[1, 6] = "Оплата";
+                ws.Cells[1, 7] = "Доктор";
+                ws.Cells[1, 8] = "Анализ";
+                ws.Cells[1, 9] = "Номер палаты";
+                ws.Cells[1, 10] = "Дата регистрации";
+
+                for (int i = 0; i < Collection.Count; i++)
+                {
+                    ws.Cells[i + 2, 1] = Collection[i].Id;
+                    ws.Cells[i + 2, 2] = Collection[i].Name;
+                    ws.Cells[i + 2, 3] = Collection[i].Birday.Value.ToShortDateString();
+                    ws.Cells[i + 2, 4] = Collection[i].Adres;
+                    ws.Cells[i + 2, 5] = Collection[i].TelNumber;
+                    ws.Cells[i + 2, 6] = Collection[i].Oplata;
+                    ws.Cells[i + 2, 7] = Collection[i].LDoctor;
+                    ws.Cells[i + 2, 8] = Collection[i].Analiz;
+                    ws.Cells[i + 2, 9] = Collection[i].PalataNumber;
+                    ws.Cells[i + 2, 10] = Collection[i].RegistrationDate;
+                }
+
+                SaveFileDialog openFile = new SaveFileDialog();
+                if (openFile.ShowDialog() == true)
+                {
+                    workbook.SaveAs(openFile.FileName);
+                    MessageBox.Show("Экспортировано успешно!");
+                    workbook.Close(System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value);
+                    app.Quit();
+
+                    GC.WaitForPendingFinalizers();
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+                    GC.Collect();
+
+                    Marshal.ReleaseComObject(ws);
+                    Marshal.ReleaseComObject(workbook);
+                    Marshal.ReleaseComObject(app);
+                }
+                else
+                {
+                    MessageBox.Show("Произошла ошибка!");
+                }
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
     }
 }

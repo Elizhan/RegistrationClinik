@@ -59,5 +59,7 @@
         </DataGrid>
         <Button Grid.Row="2" Background="Red" Width="300" HorizontalAlignment="Left"
                 Content="Закрыть" Margin="20 0" Click="Close"/>
+        <Button Grid.Row="2" Width="300" Click="Button_Click_2"
+                Content="Экпорт в Excel" Margin="20 0" HorizontalAlignment="Right"/>
     </Grid>
 </Window>

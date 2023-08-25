@@ -9,7 +9,9 @@ namespace RegistrationClinik.Models
         public DateTime? Birday { get; set; }
         public string? Adres { get; set; }
         public string? Analiz { get; set; }
+        public string? TelNumber { get; set; }
         public string? LDoctor { get; set; }
+        public string? PalataNumber { get; set; }
         public DateTime? RegistrationDate { get; set; }
         public decimal? Oplata { get; set; }
         public int IsShow { get; set; } = 1;
