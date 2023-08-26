@@ -13,5 +13,6 @@ namespace RegistrationClinik
     /// </summary>
     public partial class App : Application
     {
+        
     }
 }

@@ -20,14 +20,17 @@ namespace RegistrationClinik
         }
         private void Close(object sender, RoutedEventArgs e)
         {
-            new MainWindowB().Show();
+            //new MainWindowB().Show();
             this.Close();
         }
 
         private void Window_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            //if(e.KeyboardDevice.Modifiers == ModifierKeys.Control && e.Key == Key.Add)
-            //    new MainWindowB().Show();
+            if (e.KeyboardDevice.Modifiers == ModifierKeys.Control && e.Key == Key.Add)
+            {
+                new MainWindowB().Show();
+                this.Close();
+            }
         }
 
         private void openArchive(object sender, RoutedEventArgs e)

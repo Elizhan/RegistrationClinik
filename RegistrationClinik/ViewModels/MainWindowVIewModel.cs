@@ -21,7 +21,18 @@ namespace RegistrationClinik.ViewModels
             ArchiveCommand = new LambdaCommand(ArchiveCommandExcecute, CanArchiveCommandExcecuted);
             ShowArchiveWindowCommand = new LambdaCommand(ShowArchiveWindowCommandExcecute, CanShowArchiveWindowCommandExcecuted);
             SaveToExcelCommand = new LambdaCommand(SaveToExcelCommandExcecuted, CanSaveToExcelCommandExcecute);
+            EditCommand = new LambdaCommand(EditCommandExcecuted, CanEditCommandExcecute);
+            UpdateCommand = new LambdaCommand(uc, uce);
+        }
 
+        private bool uce(object arg)
+        {
+            return true;
+        }
+
+        private void uc(object obj)
+        {
+            GetAllDate();
         }
 
         private bool CanSaveToExcelCommandExcecute(object arg)
@@ -74,20 +85,38 @@ namespace RegistrationClinik.ViewModels
         public ICommand ShowArchiveWindowCommand { get; set; }
         public ICommand EditCommand { get; set; }
         public ICommand SaveToExcelCommand { get; set; }
+        public ICommand UpdateCommand { get; set; }
 
+        private bool CanEditCommandExcecute(object arg)
+        {
+            return true;
+        }
+
+        private void EditCommandExcecuted(object obj)
+        {
+            new regClient(null,false).Show();
+        }
         private void ArchiveCommandExcecute(object obj)
         {
-            using (ApplicationConnect db = new ApplicationConnect())
+            try
             {
-                var result = db.DBTables.FirstOrDefault(s => s.Id == selectedClient.Id);
-                if (result != null)
+                using (ApplicationConnect db = new ApplicationConnect())
                 {
-                    result.IsShow = 0;
+                    var result = db.DBTables.FirstOrDefault(s => s.Id == selectedClient.Id);
+                    if (result != null)
+                    {
+                        result.IsShow = 0;
+                    }
+                    db.SaveChanges();
+                    MessageBox.Show("Успешно!");
+                    GetAllDate();
                 }
-                db.SaveChanges();
-                MessageBox.Show("Успешно!");
-                GetAllDate();
             }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            
         }
         private bool CanArchiveCommandExcecuted(object arg)
         {
@@ -109,29 +138,37 @@ namespace RegistrationClinik.ViewModels
 
         private void ShowArchiveWindowCommandExcecute(object obj)
         {
-            new Archive().Show();
+            new Archive(false).Show();
         }
         public void GetAllDate()
         {
-            using (ApplicationConnect db = new ApplicationConnect())
+            try
             {
-                var result = db.DBTables.Where(s => s.IsShow == 1).ToList();
-                ClientCollection = new ObservableCollection<ShowTableModel>();
-                for (int i = 0; i < result.Count; i++)
-                    ClientCollection.Add(new ShowTableModel
-                    {
-                        Number = i + 1,
-                        Name = result[i].Name,
-                        Adres = result[i].Adres,
-                        Analiz = result[i].Analiz,
-                        Birday = result[i].Birday,
-                        Id = result[i].Id,
-                        LDoctor = result[i].LDoctor,
-                        Ostatok = result[i].Ostatok,
-                        Oplata = result[i].Oplata,
-                        RegistrationDate = result[i].RegistrationDate,
-                    });
+                using (ApplicationConnect db = new ApplicationConnect())
+                {
+                    var result = db.DBTables.Where(s => s.IsShow == 1).ToList();
+                    ClientCollection = new ObservableCollection<ShowTableModel>();
+                    for (int i = 0; i < result.Count; i++)
+                        ClientCollection.Add(new ShowTableModel
+                        {
+                            Number = i + 1,
+                            Name = result[i].Name,
+                            Adres = result[i].Adres,
+                            Analiz = result[i].Analiz,
+                            Birday = result[i].Birday,
+                            Id = result[i].Id,
+                            LDoctor = result[i].LDoctor,
+                            Ostatok = result[i].Ostatok,
+                            Oplata = result[i].Oplata,
+                            RegistrationDate = result[i].RegistrationDate,
+                        });
+                }
             }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+           
         }
 
         private void SearchByText(string value)

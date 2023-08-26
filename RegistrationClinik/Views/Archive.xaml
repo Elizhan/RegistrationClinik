@@ -13,13 +13,13 @@
             <RowDefinition Height="1*" />
             <RowDefinition Height="0.1*" />
         </Grid.RowDefinitions>
-        <TextBlock Text="Архив" FontSize="26" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignCaptionTextBlock}" FontWeight="Bold"/>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40 0" Orientation="Horizontal">
             <TextBlock Text="от" Style="{DynamicResource MaterialDesignSubtitle2TextBlock}" VerticalAlignment="Center" FontSize="24"/>
             <DatePicker x:Name="startDate" Width="220" Style="{DynamicResource MaterialDesignOutlinedDatePicker}" Margin="10"/>
             <TextBlock Text="до" Style="{DynamicResource MaterialDesignSubtitle2TextBlock}" VerticalAlignment="Center" FontSize="24"/>
             <DatePicker x:Name="endDate" Width="200" Style="{DynamicResource MaterialDesignOutlinedDatePicker}" Margin="10"/>
             <Button Content="Поиск" Width="140" Click="Button_Click" Margin="10 0"/>
+            <TextBlock Text="Архив" FontSize="26" VerticalAlignment="Center" Margin="20 0 0 0" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignCaptionTextBlock}" FontWeight="Bold"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="40 0">
             <TextBox TextChanged="textBox1_TextChanged" Width="270" mt:HintAssist.Hint="поиск" FontSize="20" x:Name="textBox1" Margin="10 0"/>

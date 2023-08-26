@@ -21,5 +21,13 @@ namespace RegistrationClinik.Infras
                  new MySqlServerVersion(new Version(5, 7, 29))
              );
         }
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+
+        //    optionsBuilder.UseMySql("server=192.168.0.132;user=root;password=;database=ClinikRegistationDB;",
+        //         new MySqlServerVersion(new Version(5, 7, 29))
+        //     );
+        //}
     }
 }

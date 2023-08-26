@@ -49,9 +49,9 @@
             <TextBlock Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" 
                    Text="Бонус" Style="{DynamicResource MaterialDesignSubtitle2TextBlock}"/>
             <TextBlock Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                   Text="каж/бро" Style="{DynamicResource MaterialDesignSubtitle2TextBlock}"/>
+                   Text="Ухаж./бронь" Style="{DynamicResource MaterialDesignSubtitle2TextBlock}"/>
             <TextBlock Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"
-                   Text="Оплачено" Style="{DynamicResource MaterialDesignSubtitle2TextBlock}"/>
+                   Text="Остаток" Style="{DynamicResource MaterialDesignSubtitle2TextBlock}"/>
             <TextBlock Grid.Column="3" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"
                    Text="Оплата" Style="{DynamicResource MaterialDesignSubtitle2TextBlock}"/>
             <TextBox Text="{Binding Item.Name, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" mt:HintAssist.Hint="Ф.И.О" Grid.Column="2" Grid.Row="0" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10"/>
@@ -81,7 +81,7 @@
             </TextBox>
             <TextBox Grid.Column="4" Grid.Row="3" Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="10">
                 <TextBox.Text>
-                    <Binding Path="Item.Oplacheno">
+                    <Binding Path="Item.Ostatok">
                         <Binding.ValidationRules>
                             <ExceptionValidationRule />
                         </Binding.ValidationRules>

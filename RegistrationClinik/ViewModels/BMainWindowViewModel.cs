@@ -85,40 +85,55 @@ namespace RegistrationClinik.ViewModels
         }
         private void GetWhiteCommandExcecute(object obj)
         {
-            using (ApplicationConnect db = new ApplicationConnect())
+            try
             {
-                var result = db.DBTables.FirstOrDefault(s => s.Id == selectedClient.Id);
-                if (result != null)
+                using (ApplicationConnect db = new ApplicationConnect())
                 {
-                    result.IsShow = 1;
+                    var result = db.DBTables.FirstOrDefault(s => s.Id == selectedClient.Id);
+                    if (result != null)
+                    {
+                        result.IsShow = 1;
+                    }
+                    db.SaveChanges();
+                    MessageBox.Show("Успешно!");
+                    GetAllDate();
                 }
-                db.SaveChanges();
-                MessageBox.Show("Успешно!");
-                GetAllDate();
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
             }
         }
 
         private void ArchiveCommandExcecute(object obj)
         {
-            using (ApplicationConnect db = new ApplicationConnect())
+            try
             {
-                db.DBArchives.Add(new DBArchive
+                using (ApplicationConnect db = new ApplicationConnect())
                 {
-                    IsShow = 0,
-                    Adres = SelectedClient.Adres,
-                    Name = SelectedClient.Name,
-                    Birday = SelectedClient.Birday,
-                    Analiz = SelectedClient.Analiz,
-                    LDoctor = SelectedClient.LDoctor,
-                    Oplata = SelectedClient.Oplata,
-                    RegistrationDate = SelectedClient.RegistrationDate,
-                    TelNumber = SelectedClient.TelNumber,   
+                    db.DBArchives.Add(new DBArchive
+                    {
+                        IsShow = SelectedClient.IsShow,
+                        Adres = SelectedClient.Adres,
+                        Name = SelectedClient.Name,
+                        Birday = SelectedClient.Birday,
+                        Analiz = SelectedClient.Analiz,
+                        LDoctor = SelectedClient.LDoctor,
+                        Oplata = SelectedClient.Oplata,
+                        RegistrationDate = SelectedClient.RegistrationDate,
+                        TelNumber = SelectedClient.TelNumber,
 
-                });
-                db.Remove(db.DBTables.FirstOrDefault(s => s.Id == SelectedClient.Id));
-                db.SaveChanges();
-                GetAllDate();
+                    });
+                    db.Remove(db.DBTables.FirstOrDefault(s => s.Id == SelectedClient.Id));
+                    db.SaveChanges();
+                    GetAllDate();
+                }
             }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+           
         }
         private bool CanArchiveCommandExcecuted(object arg)
         {
@@ -153,32 +168,40 @@ namespace RegistrationClinik.ViewModels
 
         public void GetAllDate()
         {
-            using (ApplicationConnect db = new ApplicationConnect())
+            try
             {
-                var result = db.DBTables.ToList();
-                ClientCollection = new ObservableCollection<ShowTableModel>();
-                for (int i = 0; i < result.Count; i++)
-                    ClientCollection.Add(new ShowTableModel
-                    {
-                        Number = i + 1,
-                        Name = result[i].Name,
-                        Adres = result[i].Adres,
-                        Analiz = result[i].Analiz,
-                        Birday = result[i].Birday,
-                        Bonus = result[i].Bonus,
-                        Comments = result[i].Comments,
-                        KajBro = result[i].KajBro,
-                        PalataNumber = result[i].PalataNumber,
-                        TelNumber = result[i].TelNumber,
-                        Id = result[i].Id,
-                        IsShow = result[i].IsShow,
-                        LDoctor = result[i].LDoctor,
-                        Ostatok = result[i].Ostatok,
-                        Oplata = result[i].Oplata,
-                        RegistrationDate = result[i].RegistrationDate,
-                        BackColor = result[i].IsShow == 0 ? "Blue" : "Red"
-                    });
+                using (ApplicationConnect db = new ApplicationConnect())
+                {
+                    var result = db.DBTables.ToList();
+                    ClientCollection = new ObservableCollection<ShowTableModel>();
+                    for (int i = 0; i < result.Count; i++)
+                        ClientCollection.Add(new ShowTableModel
+                        {
+                            Number = i + 1,
+                            Name = result[i].Name,
+                            Adres = result[i].Adres,
+                            Analiz = result[i].Analiz,
+                            Birday = result[i].Birday,
+                            Bonus = result[i].Bonus,
+                            Comments = result[i].Comments,
+                            KajBro = result[i].KajBro,
+                            PalataNumber = result[i].PalataNumber,
+                            TelNumber = result[i].TelNumber,
+                            Id = result[i].Id,
+                            IsShow = result[i].IsShow,
+                            LDoctor = result[i].LDoctor,
+                            Ostatok = result[i].Ostatok,
+                            Oplata = result[i].Oplata,
+                            RegistrationDate = result[i].RegistrationDate,
+                            BackColor = result[i].IsShow == 0 ? "Blue" : "Red"
+                        });
+                }
             }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+          
         }
         private void SearchByText(string value)
         {

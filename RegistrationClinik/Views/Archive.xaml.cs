@@ -36,6 +36,7 @@ namespace RegistrationClinik.Views
         private void GetAllDate()
         {
             using ApplicationConnect db = new();
+            db.RemoveRange(db.DBArchives.Where(s => s.IsShow == 0 && DateTime.UtcNow.Date.AddMonths(-2) > s.RegistrationDate.Value.Date)); ;
             if (isB)
             {
                 Collection = db.DBArchives.ToList();
@@ -53,8 +54,8 @@ namespace RegistrationClinik.Views
                 return;
             if (startDate.SelectedDate is null && endDate.SelectedDate is null)
                 dataGrid1.ItemsSource = new List<DBArchive>(Collection);
-            else if(startDate.SelectedDate is null && endDate.SelectedDate is not null)
-                dataGrid1.ItemsSource = new List<DBArchive>(Collection.Where(s=>s.RegistrationDate.Value.Date <= endDate.SelectedDate.Value.Date));
+            else if (startDate.SelectedDate is null && endDate.SelectedDate is not null)
+                dataGrid1.ItemsSource = new List<DBArchive>(Collection.Where(s => s.RegistrationDate.Value.Date <= endDate.SelectedDate.Value.Date));
             else if (startDate.SelectedDate is not null && endDate.SelectedDate is null)
                 dataGrid1.ItemsSource = new List<DBArchive>(Collection.Where(s => s.RegistrationDate.Value.Date >= startDate.SelectedDate.Value.Date));
             else dataGrid1.ItemsSource = new List<DBArchive>(Collection.Where(s => s.RegistrationDate.Value.Date >= startDate.SelectedDate.Value.Date && s.RegistrationDate.Value.Date <= endDate.SelectedDate.Value.Date));

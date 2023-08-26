@@ -14,7 +14,7 @@ namespace RegistrationClinik.Models
         public string? PalataNumber { get; set; }
         public DateTime? RegistrationDate { get; set; } = DateTime.UtcNow.Date;
         public decimal? Bonus { get; set; } = 0;
-        public decimal? KajBro { get; set; } = 0;
+        public string? KajBro { get; set; }
         public decimal? Ostatok { get; set; } = 0;
         public decimal? Oplata { get; set; } = 0;
         public string? Comments { get; set; }

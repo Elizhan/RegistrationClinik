@@ -11,7 +11,7 @@
         Title="MainWindow" Height="1080" Width="1920" WindowState="Maximized" WindowStyle="None">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.1*" />
+            <RowDefinition Height="100" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Grid>
@@ -33,42 +33,42 @@
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Content="Регистрация" Width="250" Margin="10" Command="{Binding EditCommand}" CommandParameter="1"/>
+                <Button Grid.Column="0" Content="Регистрация" Width="250" Margin="5" Command="{Binding EditCommand}" CommandParameter="1"/>
             </Grid>
-            <Grid Grid.Row="1" Grid.Column="1" Margin="10">
+            <Grid Grid.Row="1" Grid.Column="1" Margin="5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="0.1*" />
                     <ColumnDefinition Width="0.6*" />
                 </Grid.ColumnDefinitions>
                 <TextBox mt:HintAssist.Hint="поиск" FontSize="18" Text="{Binding SearchText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                <Button Grid.Column="2" Content="поиск" />
+                <Button Grid.Column="2" Content="Обновить" Command="{Binding UpdateCommand}"/>
             </Grid>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
-                <RowDefinition Height="0.1*" />
+                <RowDefinition Height="60" />
             </Grid.RowDefinitions>
             <DataGrid ItemsSource="{Binding ClientCollection,UpdateSourceTrigger=PropertyChanged}" CanUserAddRows="False" 
                       SelectedItem="{Binding SelectedClient,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                       HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" AlternatingRowBackground="White" 
-                      AutoGenerateColumns="False" FontSize="16" Margin="10 0" BorderThickness="0" IsReadOnly="True">
+                      AutoGenerateColumns="False" FontSize="14" Margin="10 0" BorderThickness="0" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="№" Width="0.17*" Binding="{Binding Number}"/>
-                    <DataGridTextColumn Header="Дата регистрации" Width="0.4*" Binding="{Binding RegistrationDate, StringFormat=dd.MM.yyyy HH:mm}"/>
-                    <DataGridTextColumn Header="Ф.И.О." Width="*" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Дата регистрации" Width="0.5*" Binding="{Binding RegistrationDate, StringFormat=dd.MM.yyyy HH:mm}"/>
+                    <DataGridTextColumn Header="Ф.И.О." Width="0.9*" Binding="{Binding Name}"/>
                     <DataGridTextColumn Header="Дата рождения" Width="0.4*" Binding="{Binding Birday,StringFormat=dd.MM.yyyy}"/>
                     <DataGridTextColumn Header="Адресс" Width="0.5*" Binding="{Binding Adres}"/>
-                    <DataGridTextColumn Header="Оплачено" Width="0.25*"  Binding="{Binding Ostatok}"/>
-                    <DataGridTextColumn Header="Оплата" Width="0.34*"  Binding="{Binding Oplata}"/>
-                    <DataGridTextColumn Header="Анализ" Width="0.3*" Binding="{Binding Analiz}"/>
+                    <DataGridTextColumn Header="Оплачено" Width="0.3*"  Binding="{Binding Ostatok}"/>
+                    <DataGridTextColumn Header="Оплата" Width="0.3*"  Binding="{Binding Oplata}"/>
+                    <DataGridTextColumn Header="Анализ" Width="0.25*" Binding="{Binding Analiz}"/>
                     <DataGridTextColumn Header="Лечащий врач" Width="0.6*" Binding="{Binding LDoctor}"/>
-                    <DataGridTemplateColumn Width="105" Header="Архив">
+                    <DataGridTemplateColumn Width="105" Header="Удалить">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Height="30" Background="Green" Command="{Binding Path=DataContext.ArchiveCommand , RelativeSource= {RelativeSource FindAncestor,
-                                        AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding Path=Item.Id}" Content="Архив"/>
+                                        AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding Path=Item.Id}" Content="Удалить"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -76,7 +76,8 @@
             </DataGrid>
 
             <Button Height="40" Width="220" FontSize="18" Grid.Row="1" HorizontalAlignment="Left" Content="Сохранить в Excel" Margin="20 0" Command="{Binding SaveToExcelCommand}"/>
-            <Button Height="40" Width="220" FontSize="18" Background="Green" Command="{Binding ShowArchiveWindowCommand}" Grid.Row="1" HorizontalAlignment="Right" Content="Посмотреть архив" Margin="20 0"/>
+            <Button Height="40" Width="220" FontSize="18" Background="Green" Grid.Row="1" HorizontalAlignment="Right" Content="Посмотреть архив" Command="{Binding ShowArchiveWindowCommand}" Margin="20 0"/>
+
         </Grid>
     </Grid>
 </Window>
