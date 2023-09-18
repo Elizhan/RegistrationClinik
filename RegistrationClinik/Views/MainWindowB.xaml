@@ -70,7 +70,7 @@
                       AutoGenerateColumns="False" FontSize="14" BorderThickness="0" IsReadOnly="True" Margin="0 0 5 0">
                 <DataGrid.Columns>
                     <!--<DataGridTextColumn Header="№" Width="0" Binding="{Binding Number}"/>-->
-                    <DataGridTextColumn Header="Дата" Width="0.5*" Binding="{Binding RegistrationDate,StringFormat=dd.MM.yyyy HH-mm}"/>
+                    <DataGridTextColumn Header="Дата" Width="0.5*" Binding="{Binding RegistrationDate,StringFormat=dd.MM.yyyy HH:mm}"/>
                     <DataGridTextColumn Header="Ф.И.О." Width="0.8*" Binding="{Binding Name}"/>
                     <DataGridTextColumn Header="№ Пал" Width="0.3*" Binding="{Binding PalataNumber}"/>
                     <DataGridTextColumn Header="Год рождения" Width="0.4*" Binding="{Binding Birday,StringFormat=dd.MM.yyyy}"/>

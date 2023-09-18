@@ -218,7 +218,7 @@ namespace RegistrationClinik.ViewModels
                 Excel.Workbook workbook = app.Workbooks.Add(System.Reflection.Missing.Value);
                 Excel.Worksheet ws = (Excel.Worksheet)workbook.Worksheets.get_Item(1);
 
-                ws.Cells[1, 1] = "№";
+                ws.Cells[1, 1] = "Дата регистрации";
                 ws.Cells[1, 2] = "Имя";
                 ws.Cells[1, 3] = "Номер палаты";
                 ws.Cells[1, 4] = "День рождение";
@@ -234,19 +234,19 @@ namespace RegistrationClinik.ViewModels
 
                 for (int i = 0; i < ClientCollection.Count; i++)
                 {
-                    ws.Cells[i + 2, 1] = clientCollection[i].Number;
-                    ws.Cells[i + 2, 2] = clientCollection[i].Name;
-                    ws.Cells[i + 2, 3] = clientCollection[i].PalataNumber;
-                    ws.Cells[i + 2, 4] = clientCollection[i].Birday.Value.ToShortDateString();
-                    ws.Cells[i + 2, 5] = clientCollection[i].Adres;
-                    ws.Cells[i + 2, 6] = clientCollection[i].TelNumber;
-                    ws.Cells[i + 2, 7] = clientCollection[i].KajBro;
-                    ws.Cells[i + 2, 8] = clientCollection[i].Ostatok;
-                    ws.Cells[i + 2, 9] = clientCollection[i].Oplata;
-                    ws.Cells[i + 2, 10] = clientCollection[i].LDoctor;
-                    ws.Cells[i + 2, 11] = clientCollection[i].Bonus;
-                    ws.Cells[i + 2, 12] = clientCollection[i].Analiz;
-                    ws.Cells[i + 2, 13] = clientCollection[i].Comments;
+                    ws.Cells[i + 2, 1] = clientCollection[i].RegistrationDate.Value.ToString("dd.MM.yyyy HH:mm") ?? "";
+                    ws.Cells[i + 2, 2] = clientCollection[i].Name ?? "";
+                    ws.Cells[i + 2, 3] = clientCollection[i].PalataNumber ?? "";
+                    ws.Cells[i + 2, 4] = clientCollection[i].Birday.Value.ToShortDateString() ?? "";
+                    ws.Cells[i + 2, 5] = clientCollection[i].Adres ?? "";
+                    ws.Cells[i + 2, 6] = clientCollection[i].TelNumber ?? "";
+                    ws.Cells[i + 2, 7] = clientCollection[i].KajBro ?? "";
+                    ws.Cells[i + 2, 8] = clientCollection[i].Ostatok ?? 0;
+                    ws.Cells[i + 2, 9] = clientCollection[i].Oplata ?? 0;
+                    ws.Cells[i + 2, 10] = clientCollection[i].LDoctor ?? "";
+                    ws.Cells[i + 2, 11] = clientCollection[i].Bonus ?? 0;
+                    ws.Cells[i + 2, 12] = clientCollection[i].Analiz ?? "";
+                    ws.Cells[i + 2, 13] = clientCollection[i].Comments ?? "";
                 }
 
                 SaveFileDialog openFile = new SaveFileDialog();

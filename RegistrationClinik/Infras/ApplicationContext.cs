@@ -8,12 +8,10 @@ namespace RegistrationClinik.Infras
     {
         public DbSet<DBTable> DBTables { get; set; }
         public DbSet<DBArchive> DBArchives { get; set; }
-
         public ApplicationConnect()
         {
             Database.EnsureCreated();
         }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
@@ -21,7 +19,6 @@ namespace RegistrationClinik.Infras
                  new MySqlServerVersion(new Version(5, 7, 29))
              );
         }
-
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
 
