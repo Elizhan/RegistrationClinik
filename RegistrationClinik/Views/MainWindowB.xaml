@@ -46,7 +46,7 @@
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
                 <Button Background="Green" Grid.Column="1" Content="Регистрация" Margin="5" Command="{Binding EditCommand}" CommandParameter="1"/>
-                <Button Click="WhiteWindowClick" Grid.Column="0" Content="На белое окно" Margin="5"/>
+                <!--<Button Click="WhiteWindowClick" Grid.Column="0" Content="На белое окно" Margin="5"/>-->
             </Grid>
             <Grid Grid.Row="1" Grid.Column="1" Margin="5">
                 <Grid.ColumnDefinitions>
@@ -69,7 +69,26 @@
                       HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" AlternatingRowBackground="White"
                       AutoGenerateColumns="False" FontSize="14" BorderThickness="0" IsReadOnly="True" Margin="0 0 5 0">
                 <DataGrid.Columns>
-                    <!--<DataGridTextColumn Header="№" Width="0" Binding="{Binding Number}"/>-->
+                    <DataGridTextColumn Header="№" Width="0.17*" Binding="{Binding Number}"/>
+                    <DataGridTextColumn Header="Дата регистрации" Width="0.5*" Binding="{Binding RegistrationDate, StringFormat=dd.MM.yyyy HH:mm}"/>
+                    <DataGridTextColumn Header="Ф.И.О." Width="0.9*" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Дата рождения" Width="0.4*" Binding="{Binding Birday,StringFormat=dd.MM.yyyy}"/>
+                    <DataGridTextColumn Header="Адресс" Width="0.5*" Binding="{Binding Adres}"/>
+                    <DataGridTextColumn Header="Оплачено" Width="0.3*"  Binding="{Binding Ostatok}"/>
+                    <DataGridTextColumn Header="Оплата" Width="0.3*"  Binding="{Binding Oplata}"/>
+                    <DataGridTextColumn Header="Анализ" Width="0.25*" Binding="{Binding Analiz}"/>
+                    <DataGridTextColumn Header="Лечащий врач" Width="0.6*" Binding="{Binding LDoctor}"/>
+                    <DataGridTemplateColumn Width="105" Header="Удалить">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Height="30" Background="Green" Command="{Binding Path=DataContext.ArchiveCommand , RelativeSource= {RelativeSource FindAncestor,
+                        AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding Path=Item.Id}" Content="Удалить"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+                
+                <!--<DataGridTextColumn Header="№" Width="20" Binding="{Binding Number}"/>
                     <DataGridTextColumn Header="Дата" Width="0.5*" Binding="{Binding RegistrationDate,StringFormat=dd.MM.yyyy HH:mm}"/>
                     <DataGridTextColumn Header="Ф.И.О." Width="0.8*" Binding="{Binding Name}"/>
                     <DataGridTextColumn Header="№ Пал" Width="0.3*" Binding="{Binding PalataNumber}"/>
@@ -83,10 +102,11 @@
                     <DataGridTextColumn Header="Бонус" Width="0.3*" Binding="{Binding Bonus}"/>
                     <DataGridTextColumn Header="Анализ" Width="0.3*" Binding="{Binding Analiz}"/>
                     <DataGridTextColumn Header="Прочее" Width="0.3*" Binding="{Binding Comments}"/>
-                    <!--<DataGridTextColumn Header="Дата регистрации" Width="0.4*" Binding="{Binding RegistrationDate, StringFormat=dd.MM.yyyy HH:mm}"/>
+                    -->
+                <!--<DataGridTextColumn Header="Дата регистрации" Width="0.4*" Binding="{Binding RegistrationDate, StringFormat=dd.MM.yyyy HH:mm}"/>
                     <DataGridTextColumn Header="Аванс" Width="0.25*"  Binding="{Binding Avans}"/>
                     <DataGridTextColumn Header="Оплачено" Width="0.29*"  Binding="{Binding Oplacheno}"/>-->
-                    <DataGridTemplateColumn Width="60" Header="НБ">
+                <!--<DataGridTemplateColumn Width="60" Header="НБ">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Background="{Binding BackColor}" Height="30" Padding="0" Margin="7"  Command="{Binding Path=DataContext.GetWhiteCommand , 
@@ -94,7 +114,8 @@
                                         CommandParameter="0" Content="Доб."/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
+                    </DataGridTemplateColumn>-->
+                <!--
                     <DataGridTemplateColumn Width="60" Header="Из-ть">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -113,7 +134,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                </DataGrid.Columns>
+                </DataGrid.Columns>-->
             </DataGrid>
             <Button Height="40" Width="220" FontSize="18" Grid.Row="1" HorizontalAlignment="Left" Content="Сохранить в Excel" Margin="20 0" Command="{Binding SaveToExcelCommand}" Click="SaveToExcel"/>
             <Button Height="40" Width="220" FontSize="18" Background="Green" Grid.Row="1" HorizontalAlignment="Right" Content="Посмотреть архив" Command="{Binding ShowArchiveWindowCommand}" Margin="20 0"/>

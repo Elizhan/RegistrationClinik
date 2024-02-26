@@ -234,19 +234,19 @@ namespace RegistrationClinik.ViewModels
 
                 for (int i = 0; i < ClientCollection.Count; i++)
                 {
-                    ws.Cells[i + 2, 1] = clientCollection[i].RegistrationDate.Value.ToString("dd.MM.yyyy HH:mm") ?? "";
-                    ws.Cells[i + 2, 2] = clientCollection[i].Name ?? "";
-                    ws.Cells[i + 2, 3] = clientCollection[i].PalataNumber ?? "";
-                    ws.Cells[i + 2, 4] = clientCollection[i].Birday.Value.ToShortDateString() ?? "";
-                    ws.Cells[i + 2, 5] = clientCollection[i].Adres ?? "";
-                    ws.Cells[i + 2, 6] = clientCollection[i].TelNumber ?? "";
-                    ws.Cells[i + 2, 7] = clientCollection[i].KajBro ?? "";
+                    ws.Cells[i + 2, 1] = clientCollection[i].RegistrationDate.Value.ToString("dd.MM.yyyy HH:mm") ?? DateTime.Now.Date.ToString();
+                    ws.Cells[i + 2, 2] = clientCollection[i].Name ?? " ";
+                    ws.Cells[i + 2, 3] = clientCollection[i].PalataNumber ?? " ";
+                    ws.Cells[i + 2, 4] = clientCollection[i].Birday.Value.ToShortDateString() ?? DateTime.Now.Date.ToString();
+                    ws.Cells[i + 2, 5] = clientCollection[i].Adres ?? " ";
+                    ws.Cells[i + 2, 6] = clientCollection[i].TelNumber ?? " ";
+                    ws.Cells[i + 2, 7] = clientCollection[i].KajBro ?? " ";
                     ws.Cells[i + 2, 8] = clientCollection[i].Ostatok ?? 0;
                     ws.Cells[i + 2, 9] = clientCollection[i].Oplata ?? 0;
-                    ws.Cells[i + 2, 10] = clientCollection[i].LDoctor ?? "";
+                    ws.Cells[i + 2, 10] = clientCollection[i].LDoctor ?? " ";
                     ws.Cells[i + 2, 11] = clientCollection[i].Bonus ?? 0;
-                    ws.Cells[i + 2, 12] = clientCollection[i].Analiz ?? "";
-                    ws.Cells[i + 2, 13] = clientCollection[i].Comments ?? "";
+                    ws.Cells[i + 2, 12] = clientCollection[i].Analiz ?? " ";
+                    ws.Cells[i + 2, 13] = clientCollection[i].Comments ?? " ";
                 }
 
                 SaveFileDialog openFile = new SaveFileDialog();

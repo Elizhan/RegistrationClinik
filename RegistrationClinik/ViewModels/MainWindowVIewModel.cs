@@ -200,9 +200,9 @@ namespace RegistrationClinik.ViewModels
                 for (int i = 0; i < ClientCollection.Count; i++)
                 {
                     ws.Cells[i + 2, 1] = clientCollection[i].Number! ?? 1;
-                    ws.Cells[i + 2, 2] = clientCollection[i].RegistrationDate.Value!.ToShortDateString() ?? "";
+                    ws.Cells[i + 2, 2] = clientCollection[i].RegistrationDate.Value!.ToShortDateString() ?? DateTime.Now.Date.ToString();
                     ws.Cells[i + 2, 3] = clientCollection[i].Name ?? "";
-                    ws.Cells[i + 2, 4] = clientCollection[i].Birday.Value.ToShortDateString() ?? DateTime.Now.ToShortDateString();
+                    ws.Cells[i + 2, 4] = clientCollection[i].Birday.Value.ToShortDateString() ?? DateTime.Now.Date.ToString();
                     ws.Cells[i + 2, 5] = clientCollection[i].Adres ?? "";
                     ws.Cells[i + 2, 6] = clientCollection[i].Ostatok ?? 0;
                     ws.Cells[i + 2, 7] = clientCollection[i].Oplata ?? 0;
